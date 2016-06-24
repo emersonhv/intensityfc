@@ -6,7 +6,7 @@
 
           method: 'GET',
 
-          url: 'http://prueba.intensityfc.com/obt_citas',
+          url: host +'obt_citas',
 
           headers:{'Content-Type': 'application/json'}
 
@@ -25,7 +25,7 @@
            $scope.eventos = [];
 
            var date = new Date();
-			if (cit != "null") {      
+			if (cit != "null") {
 			   for(i = 0; i < cit.length; i++){
 				 date.setFullYear(cit[i].fecha.split('-')[0]);
 				 date.setMonth(cit[i].fecha.split('-')[1]),
@@ -33,7 +33,7 @@
 				 $scope.eventos.push({
 				   title: cit[i].nombre_cliente,
 				   start: cit[i].fecha + "T" +cit[i].hora,
-				   url: 'http://prueba.intensityfc.com/cita/'+cit[i].id,
+				   url: host + 'cita/'+cit[i].id,
 				   backgroundColor: "#f56954", //red
 				   borderColor: "#f56954" //red
 
@@ -119,4 +119,3 @@
     }
 
 </script>
-

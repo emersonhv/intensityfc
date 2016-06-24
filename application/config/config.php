@@ -15,7 +15,9 @@
 |
 */
 //$config['base_url'] = 'http://localhost:82/gym-fitness';
-$config['base_url'] = 'http://prueba.intensityfc.com';
+//$config['base_url'] = 'http://agenda.intensityfc.com';
+$config['base_url'] = 'http://test.intensityfc.com';
+
 
 /*
 |--------------------------------------------------------------------------

@@ -24,7 +24,7 @@
 
                 method: 'POST',
 
-                url: 'http://prueba.intensityfc.com/editar_cita',
+                url: host+'/editar_cita',
 
                 data:$scope.cita,
 
@@ -69,16 +69,16 @@
              });
 
          };
-		 
+
 		  $scope.cancelar_cita = function(){
-			
+
             $scope.cita = {
                id:$scope.idCita,
             };
-			
+
             var request = {
                 method: 'POST',
-                url: 'http://prueba.intensityfc.com/cancelar_cita',
+                url: host+'cancelar_cita',
                 data:$scope.cita,
                 headers:{'Content-Type': 'application/json'}
             };
@@ -93,7 +93,7 @@
 					alert($scope.mensaje.msg);
                  //console.log(response.status);
                  //console.log($scope.mensaje);
-                 $window.location.href = 'http://prueba.intensityfc.com/ver_agenda';
+                 $window.location.href = host+'ver_agenda';
              }, function(response) {
                  $scope.mensaje = {
                    msg:"No se envió información, comuniquese con el proveedor",
@@ -112,7 +112,7 @@
 
             var request = {
                 method: 'POST',
-                url: 'http://prueba.intensityfc.com/completar_cita',
+                url: host+'completar_cita',
                 data:$scope.cita,
                 headers:{'Content-Type': 'application/json'}
             };
@@ -127,7 +127,7 @@
 
                  //console.log(response.status);
                  //console.log($scope.mensaje);
-                 $window.location.href = 'http://prueba.intensityfc.com/ver_agenda';
+                 $window.location.href = host+'ver_agenda';
              }, function(response) {
                  $scope.mensaje = {
                    msg:"No se envió información, comuniquese con el proveedor",
@@ -140,4 +140,3 @@
     }]);
 
 </script>
-
