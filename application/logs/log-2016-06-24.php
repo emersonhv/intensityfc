@@ -760,3 +760,65 @@ DEBUG - 2016-06-24 02:45:01 --> Model Class Initialized
 DEBUG - 2016-06-24 02:45:01 --> Helper loaded: file_helper
 DEBUG - 2016-06-24 02:45:01 --> Final output sent to browser
 DEBUG - 2016-06-24 02:45:01 --> Total execution time: 0.0595
+DEBUG - 2016-06-24 07:04:24 --> Config Class Initialized
+DEBUG - 2016-06-24 07:04:24 --> Hooks Class Initialized
+DEBUG - 2016-06-24 07:04:24 --> Utf8 Class Initialized
+DEBUG - 2016-06-24 07:04:24 --> UTF-8 Support Enabled
+DEBUG - 2016-06-24 07:04:24 --> URI Class Initialized
+DEBUG - 2016-06-24 07:04:24 --> Router Class Initialized
+DEBUG - 2016-06-24 07:04:24 --> No URI present. Default controller set.
+DEBUG - 2016-06-24 07:04:24 --> Output Class Initialized
+DEBUG - 2016-06-24 07:04:24 --> Security Class Initialized
+DEBUG - 2016-06-24 07:04:24 --> Input Class Initialized
+DEBUG - 2016-06-24 07:04:24 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-06-24 07:04:24 --> Language Class Initialized
+DEBUG - 2016-06-24 07:04:24 --> Loader Class Initialized
+DEBUG - 2016-06-24 07:04:25 --> Helper loaded: url_helper
+DEBUG - 2016-06-24 07:04:25 --> Helper loaded: cookie_helper
+DEBUG - 2016-06-24 07:04:25 --> Database Driver Class Initialized
+ERROR - 2016-06-24 07:04:25 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\intensityfc\system\database\drivers\mysql\mysql_driver.php 73
+ERROR - 2016-06-24 07:04:26 --> Severity: Warning  --> mysql_connect(): php_network_getaddresses: getaddrinfo failed: Host desconocido.  C:\xampp\htdocs\intensityfc\system\database\drivers\mysql\mysql_driver.php 73
+ERROR - 2016-06-24 07:04:26 --> Severity: Warning  --> mysql_connect(): php_network_getaddresses: getaddrinfo failed: Host desconocido.  C:\xampp\htdocs\intensityfc\system\database\drivers\mysql\mysql_driver.php 73
+ERROR - 2016-06-24 07:04:26 --> Unable to connect to the database
+DEBUG - 2016-06-24 07:04:26 --> Session Class Initialized
+DEBUG - 2016-06-24 07:04:26 --> Helper loaded: string_helper
+DEBUG - 2016-06-24 07:04:26 --> A session cookie was not found.
+DEBUG - 2016-06-24 07:04:26 --> Session routines successfully run
+DEBUG - 2016-06-24 07:04:26 --> Email Class Initialized
+DEBUG - 2016-06-24 07:04:26 --> Controller Class Initialized
+DEBUG - 2016-06-24 07:04:26 --> Model Class Initialized
+DEBUG - 2016-06-24 07:04:26 --> Model Class Initialized
+DEBUG - 2016-06-24 07:04:26 --> File loaded: application/views/pagina/index.php
+DEBUG - 2016-06-24 07:04:26 --> Final output sent to browser
+DEBUG - 2016-06-24 07:04:26 --> Total execution time: 1.8016
+DEBUG - 2016-06-24 07:04:41 --> Config Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Hooks Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Utf8 Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> UTF-8 Support Enabled
+DEBUG - 2016-06-24 07:04:41 --> URI Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Router Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Output Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Security Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Input Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-06-24 07:04:41 --> Language Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Loader Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Helper loaded: url_helper
+DEBUG - 2016-06-24 07:04:41 --> Helper loaded: cookie_helper
+DEBUG - 2016-06-24 07:04:41 --> Database Driver Class Initialized
+ERROR - 2016-06-24 07:04:41 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\intensityfc\system\database\drivers\mysql\mysql_driver.php 73
+ERROR - 2016-06-24 07:04:41 --> Severity: Warning  --> mysql_connect(): php_network_getaddresses: getaddrinfo failed: Host desconocido.  C:\xampp\htdocs\intensityfc\system\database\drivers\mysql\mysql_driver.php 73
+ERROR - 2016-06-24 07:04:41 --> Severity: Warning  --> mysql_connect(): php_network_getaddresses: getaddrinfo failed: Host desconocido.  C:\xampp\htdocs\intensityfc\system\database\drivers\mysql\mysql_driver.php 73
+ERROR - 2016-06-24 07:04:41 --> Unable to connect to the database
+DEBUG - 2016-06-24 07:04:41 --> Session Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Helper loaded: string_helper
+DEBUG - 2016-06-24 07:04:41 --> Session routines successfully run
+DEBUG - 2016-06-24 07:04:41 --> Email Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Controller Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Model Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> Model Class Initialized
+DEBUG - 2016-06-24 07:04:41 --> File loaded: application/views/pagina/left_menu.php
+DEBUG - 2016-06-24 07:04:42 --> File loaded: application/views/pagina/dashboard.php
+DEBUG - 2016-06-24 07:04:42 --> File loaded: application/views/layout/master.php
+DEBUG - 2016-06-24 07:04:42 --> Final output sent to browser
+DEBUG - 2016-06-24 07:04:42 --> Total execution time: 0.4502
