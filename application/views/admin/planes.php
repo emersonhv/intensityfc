@@ -1,4 +1,4 @@
-<div class="row" ng-controller="plans" >
+<div class="row" ng-controller="ConfigurarPlanes" >
 
    <div class="col-md-12">
 		<div class="alert {{datacli.tipo}}" ng-show="datacli.tipo">

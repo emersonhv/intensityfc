@@ -57,7 +57,7 @@
                   <label for="email">Correo electrónico</label>
                   <input class="form-control" ng-model="plan.cantidad_citas" id="cantidad_citas" name="cantidad_citas" placeholder="" type="text"/>
                 </div>
-              </div>
+              </div> 
               <!-- /.box-body -->
 
               <div class="box-footer">
