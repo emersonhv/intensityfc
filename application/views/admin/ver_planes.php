@@ -23,7 +23,7 @@
 	}
 </style>
 <p>Hola</p>
-<div class="row" ng-controller="ConfigurarPlanes" >
+<div class="row" >
    <div class="col-md-12">
 		<div class="alert {{datacli.tipo}}" ng-show="datacli.tipo">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
