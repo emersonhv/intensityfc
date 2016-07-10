@@ -31,7 +31,7 @@
 
           <div class="box-header with-border">
                 <h3 class="box-title"></h3>
-                 <a type="button" class="btn btn-primary btn-flat" href="planes">
+                 <a type="button" class="btn btn-primary btn-flat" href="nuevo_plan">
                     <spam>Nuevo Plan</spam> <i class="fa fa-pencil"></i>
                  </a>
             </div>
