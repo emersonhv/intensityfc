@@ -31,8 +31,8 @@
 
           <div class="box-header with-border">
                 <h3 class="box-title"></h3>
-                 <a type="button" class="btn btn-primary btn-flat" href="cliente">
-                    <spam>Nuevo Cliente</spam> <i class="fa fa-pencil"></i>
+                 <a type="button" class="btn btn-primary btn-flat" href="planes">
+                    <spam>Nuevo Plan</spam> <i class="fa fa-pencil"></i>
                  </a>
             </div>
 
@@ -67,7 +67,7 @@
                   <td><a>{{plan.name}}</a></td>
                   <td>{{plan.description.split('\n')[0]}}</td>
                   <td>{{plan.price[0].price | currency}} COP</td>
-                  <td class="bg-purpure"></td>
+                  <td class="{{color[$index]}}"></td>
               </tr>
               </tbody>
           </table>
