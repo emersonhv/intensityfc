@@ -54,7 +54,7 @@
                   </th>
                   <th>Nombre</th>
                   <th>Referencia</th>
-                  <th>Cantidad Citas</th>
+                  <th>Valor</th>
                   <th>Color</th>
               </tr>
               <tr ng-repeat="plan in planes | filter:nombrecl">
