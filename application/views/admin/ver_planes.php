@@ -67,7 +67,7 @@
                   <td><a>{{plan.name}}</a></td>
                   <td>{{plan.description.split('\n')[0]}}</td>
                   <td>{{plan.price[0].price | currency}} COP</td>
-                  <td class="{{color[$index]}}"></td>
+                  <td class="{{color[$index]}}"> </td>
               </tr>
               </tbody>
           </table>
