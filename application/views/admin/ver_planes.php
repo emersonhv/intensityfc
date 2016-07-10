@@ -28,18 +28,24 @@
 <div class="row" ng-controller="VerPlanes" ng-init="indx = 1">
   <div class="col-md-12 col-sm-12 col-xs-12">
    <div class="box box-danger">
+
+          <div class="box-header with-border">
+                <h3 class="box-title"></h3>
+                 <a type="button" class="btn btn-primary btn-flat" href="cliente">
+                    <spam>Nuevo Cliente</spam> <i class="fa fa-pencil"></i>
+                 </a>
+            </div>
+
           <div class="input-group margin">
               <input type="text" class="form-control" ng-model="nombrecl" placeholder="Ingrese nombre de cliente">
               <span class="input-group-btn">
-                  <button type="button" class="btn btn-info btn-flat" ng-click="buscarCliente(nombrecl)">Buscar</button>
+                  <button type="button" class="btn btn-info btn-flat" ng-click="buscarPlan(nombrecl)">Buscar</button>
               </span>
               <!--div class="input-group-btn">
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
               </div-->
           </div>
-            <a type="button" class="btn btn-primary btn-flat" href="cliente">
-                <spam>Nuevo Plan</spam> <i class="fa fa-pencil"></i>
-            </a>
+            
           <table class="table table-bordered table-hover">
               <tbody>
               <tr>
@@ -61,6 +67,7 @@
                   <td><a>{{plan.name}}</a></td>
                   <td>{{plan.description.split('\n')[0]}}</td>
                   <td>{{plan.price[0].price | currency}} COP</td>
+                  <td class="bg-purpure"></td>
               </tr>
               </tbody>
           </table>
