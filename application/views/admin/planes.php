@@ -23,15 +23,15 @@
                   <input class="form-control" ng-model="plan.referencia" id="referencia" name="referencia" placeholder="" type="text"/>
                 </div>
 				<div class="form-group">
-                  <label for="direccion">Dirección</label>
+                  <label for="direccion">Descripcion</label>
                   <input class="form-control" ng-model="plan.descripcion" id="descripcion" name="descripcion" placeholder="" type="text"/>
                 </div>
 				<div class="form-group">
-                  <label for="ciudad">Ciudad</label>
+                  <label for="ciudad">Valor</label>
                   <input class="form-control" ng-model="plan.valor" id="valor" name="valor" placeholder="" type="text"/>
                 </div>
 				<div class="form-group">
-                  <label for="email">Correo electrónico</label>
+                  <label for="email">Cantidad Citas</label>
                   <input class="form-control" ng-model="plan.cantidad_citas" id="cantidad_citas" name="cantidad_citas" placeholder="" type="text"/>
                 </div>
               </div>
