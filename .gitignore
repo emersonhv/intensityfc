@@ -1,1 +1,3 @@
 /application/logs
+/aplication/config/config.php
+/aplication/config/database.php
