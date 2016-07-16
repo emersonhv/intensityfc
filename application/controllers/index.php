@@ -146,14 +146,8 @@ class Index extends MY_Controller {
 	 * @return string mensajes
 	 */
 	public function iniciar_sesion() {
-        $R['CI'] = $this->CI;
-        $R['contenido'] = 'pagina/dashboard';
-        $R['leftmenu'] = 'pagina/left_menu';
-		$R['menu_activo'] = 'Dashboard';
-		$R['titulo'] = 'Agenda';
-        $R['desc_titulo'] = 'Vista general de citas';
-        $this->load->view('layout/master',$R);
-		/*$inputs = $this->input->post();
+        
+		$inputs = $this->input->post();
 
 		if ($inputs['correo']!="" AND $inputs['contrasena']!="") {
 
@@ -174,8 +168,12 @@ class Index extends MY_Controller {
 
 				log_message("INFO", "El usuario ".$data['nombre']." ha iniciado sesion. IP: " . $this->session->userdata('ip_address'));
 
-				$R['titulo'] = 'Bienvenido';
-				$R['contenido'] = 'admin/dashboard';
+				$R['CI'] = $this->CI;
+				$R['contenido'] = 'pagina/dashboard';
+				$R['leftmenu'] = 'pagina/left_menu';
+				$R['menu_activo'] = 'Dashboard';
+				$R['titulo'] = 'Dashboard';
+				$R['desc_titulo'] = 'Ventana de informes';
 				$this->load->view('layout/master',$R);
 
 			} else {
@@ -185,9 +183,8 @@ class Index extends MY_Controller {
 		} else {
 			$R['mensaje']='Diligencie todos los campos';
 			$this->load->view('pagina/index',$R);
-		}*/
+		}
 	}
-
 	public function logout() {
 		$CI = & get_instance();
 		log_message("INFO", "El usuario " . $CI->session->userdata('nombre').
@@ -195,7 +192,7 @@ class Index extends MY_Controller {
 		$CI->session->unset_userdata('logged_in');
 		$CI->session->sess_destroy();
 		delete_cookie('fitness');
-		$this->index();
+		$this->load->view('pagina/index');
 	}
 }
 
