@@ -2,7 +2,7 @@
     agenda.controller('Agenda', ['$scope', '$http', '$window',function($scope, $http, $window) {
       var request = {
           method: 'GET',
-          url: 'http://agenda.intensityfc.com/obt_citas',
+          url: host +'obt_citas',
           headers:{'Content-Type': 'application/json'}
       };
       $http(request).
@@ -38,7 +38,7 @@
            console.log($scope.eventos);
            calendar($scope.eventos);
        }, function(response) {
-         alert("Fallo request");
+         alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
            $scope.mensaje = {
              msg:"No se envió información, comuniquese con el proveedor",
              tipo:"alert-warning"
