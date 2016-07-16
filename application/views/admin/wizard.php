@@ -42,7 +42,7 @@
                <div ng-repeat="plan in planes">
                   <input class="" type="radio" id="plan{{$index+1}}" name="plan" value="{{plan.id}}" ng-click="seleccionarPLan($index)">
                   <label for="plan{{$index+1}}" class="text-red">
-                     {{plan.name}} - {{plan.price[0].price | currency}} COP <!--{{plan.description.split('\n')[2]}}-->
+                     {{plan.name}} - {{plan.price[0].price | currency}} COP {{plan.description.split('\n')[2]}}
                   </label>
                </div>
             </div>
