@@ -2,7 +2,7 @@
     agenda.controller('Agenda', ['$scope', '$http', '$window',function($scope, $http, $window) {
       var request = {
           method: 'GET',
-          url: host +'obt_citas',
+          url: host+'obt_citas',
           headers:{'Content-Type': 'application/json'}
       };
       $http(request).
@@ -29,7 +29,7 @@
 				 $scope.eventos.push({
 				   title: cit[i].nombre_cliente,
 				   start: cit[i].fecha + "T" +cit[i].hora,
-				   url: 'http://agenda.intensityfc.com/cita/'+cit[i].id,
+				   url: host+'cita/'+cit[i].id,
 				   backgroundColor: backgroundColor, //red
 				   borderColor: borderColor //red
 				 });
