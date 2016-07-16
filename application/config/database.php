@@ -65,5 +65,5 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 
-/* End of file database.php */
+/* Fin del archivo database.php */
 /* Location: ./application/config/database.php */
