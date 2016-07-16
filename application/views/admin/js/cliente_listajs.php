@@ -19,7 +19,7 @@
              $scope.data = response.data;
              $scope.clientes = _.sortBy($scope.data, 'reference');
          }, function(response) {
-             alert("Request failed");
+             alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
              //$scope.data = response.data || "Request failed";
              //$scope.status = response.status;
          });

@@ -48,7 +48,7 @@
 
        }, function(response) {
 
-         alert("Fallo request");
+         alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
 
            $scope.mensaje = {
 

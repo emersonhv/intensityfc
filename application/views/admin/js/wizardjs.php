@@ -54,7 +54,7 @@
 
          }, function(response) {
 
-             alert("Request failed");
+             alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
 
              //$scope.data = response.data || "Request failed";
 
@@ -89,7 +89,7 @@
 
              }, function(response) {
 
-                 alert("Request failed");
+                 alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
 
                  //$scope.data = response.data || "Request failed";
 
