@@ -53,7 +53,7 @@
                       <i class="fa fa-check-square-o"></i>
                   </th>
                   <th>Nombre</th>
-                  <th>Referencia</th>
+                  <th>Descripcion</th>
                   <th>Valor</th>
                   <th>Cantidad citas</th>
                   <th>Citas por Semana</th>
@@ -68,7 +68,7 @@
                   </td>
                   <td><a>{{plan.name}}</a></td>
                   <td>{{plan.description.split('\n')[0]}}</td>
-                  <td>{{plan.price[0].price | currency}} COP</td>
+                  <td>{{plan.price | currency}} COP</td>
                   <td>{{plan.cantidad_citas}}</td>
                   <td>{{plan.clasesxsemana }}</td>
                   <td class="{{color[$index]}}"> </td>
