@@ -55,6 +55,8 @@
                   <th>Nombre</th>
                   <th>Referencia</th>
                   <th>Valor</th>
+                  <th>Cantidad citas</th>
+                  <th>Citas por Semana</th>
                   <th>Color</th>
               </tr>
               <tr ng-repeat="plan in planes | filter:nombrecl">
@@ -67,6 +69,8 @@
                   <td><a>{{plan.name}}</a></td>
                   <td>{{plan.description.split('\n')[0]}}</td>
                   <td>{{plan.price[0].price | currency}} COP</td>
+                  <td>{{plan.cantidad_citas}}</td>
+                  <td>{{plan.clasesxsemana }}</td>
                   <td class="{{color[$index]}}"> </td>
               </tr>
               </tbody>

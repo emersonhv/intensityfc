@@ -38,6 +38,11 @@ class Admin extends MY_Controller {
 		$this->load->view('layout/master',$paramts);
 	}
 
+	public function lista_planes($mensaje = null){
+		$planes = $this->planes->get_planes();
+		echo json_encode($planes);
+	}
+	
 	public function nuevo_plan($mensaje = null){
 		$paramts['CI'] = $this->CI;
 		$paramts['leftmenu'] = 'pagina/left_menu';

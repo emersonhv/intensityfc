@@ -47,6 +47,7 @@ $route["salir"] = "index/logout";
 //-----PLANES
 $route["nuevo_plan"] = "admin/nuevo_plan";
 $route["ver_planes"] = "admin/verplanes";
+$route["get_planes"] = "admin/listar_planes";
 $route["asignar_plan"] = "admin/wizard";
 $route["insertar_citas"] = "admin/citas_aprogramadas";
 $route["ver_agenda"] = "admin/agenda";
