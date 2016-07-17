@@ -9,6 +9,7 @@ class Admin extends MY_Controller {
 		parent::__construct();
 		$this->load->model('citas');
 		$this->load->model('cliente');
+		$this->load->model('planes');
 	}
 
 	/**
