@@ -22,7 +22,6 @@ class Planes extends MY_Model {
             $this->db->where('p.id', $id);
             $query = $this->db->get();
             $result = $query->result_array();
-             echo "<pre>con UD"; print_r($result); echo "</pre>";die;
             if ($query->num_rows() > 0) {
                 return $result[0];
             } else {
@@ -31,7 +30,6 @@ class Planes extends MY_Model {
         } else {
             $query = $this->db->get();
             $result = $query->result_array();
-            echo "<pre>hola"; print_r($result); echo "</pre>";die;
             if ($query->num_rows() > 0) {
                 return $result;
             } else {
