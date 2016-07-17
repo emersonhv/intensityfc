@@ -1,8 +1,8 @@
 <script type="text/javascript">
     agenda.controller('VerPlanes', ['$scope', '$http', function($scope, $http) {
 
-        $http.defaults.headers.common.Authorization = 'Basic aW50ZW5zaXR5ZmNAZ21haWwuY29tOjQyYTM2MDcyZjFlM2MxN2YxZjA3';
-        $http.defaults.cache = true;
+       // $http.defaults.headers.common.Authorization = 'Basic aW50ZW5zaXR5ZmNAZ21haWwuY29tOjQyYTM2MDcyZjFlM2MxN2YxZjA3';
+        //$http.defaults.cache = true;
         var req = {
             method: 'GET',
             url: host + 'get_planes',
