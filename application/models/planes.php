@@ -2,7 +2,7 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Cliente extends MY_Model {
+class Planes extends MY_Model {
 
     function _construct() {
         parent::_construct();
