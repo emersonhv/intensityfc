@@ -28,9 +28,8 @@ class Planes extends MY_Model {
                 return NULL;
             }
         } else {                
-            //$query = $this->db->get();
             $query = $this->db->like('p.reference','Plan', 'both');
-            print_r($query);
+            $query = $this->db->get();
             $result = $query->result_array();
             if ($query->num_rows() > 0) {
                 return $result;
