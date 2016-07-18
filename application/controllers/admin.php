@@ -57,12 +57,12 @@ class Admin extends MY_Controller {
 
 	public function crear_plan($mensaje = null){
 		$prog = json_decode(file_get_contents('php://input'), true);
-		print_r($prog);	die;
-		/*$this->db->trans_start();
+		
+		$this->db->trans_start();
 		$this->db->trans_begin();
 
 		$this->db->query("INSERT INTO planes (name, reference, description, price, cantidad_citas, clasesxsemana) ".
-			"VALUES(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fecha']."','".$prog['hora']."',0)"
+			"VALUES(".$prog['name'].",".$prog['reference'].",".$prog['description'].",'".$prog['cantidad_citas']."','".$prog['clasesxsemana']."')"
 		);
 
 		if ($this->db->trans_status() === FALSE) {
@@ -71,7 +71,7 @@ class Admin extends MY_Controller {
 		} else {
 			$this->db->trans_commit();
 			echo json_encode(array('msg' =>  'Cita creada con éxito.', 'tipo'=>'callout-success'));
-		}*/
+		}
 	}
 
 	public function wizard($mensaje = null){
