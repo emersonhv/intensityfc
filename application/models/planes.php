@@ -30,6 +30,7 @@ class Planes extends MY_Model {
         } else {                
             //$query = $this->db->get();
             $query = $this->db->like('p.reference','Plan', 'none');
+            print_r($query);
             $result = $query->result_array();
             if ($query->num_rows() > 0) {
                 return $result;
