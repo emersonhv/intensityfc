@@ -67,10 +67,10 @@ class Admin extends MY_Controller {
 
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
-			echo json_encode(array('msg' =>  'No fue posible crear cita, intente nuevamente si persiste comuniquese con el proveedor.', 'tipo' => 'callout-danger'));
+			echo json_encode(array('msg' =>  'No fue posible crear plan, intente nuevamente si persiste comuniquese con el proveedor.', 'tipo' => 'callout-danger'));
 		} else {
 			$this->db->trans_commit();
-			echo json_encode(array('msg' =>  'Cita creada con éxito.', 'tipo'=>'callout-success'));
+			echo json_encode(array('msg' =>  'Plan creado con éxito.', 'tipo'=>'callout-success'));
 		}
 	}
 
