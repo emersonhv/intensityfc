@@ -28,7 +28,7 @@ class Planes extends MY_Model {
                 return NULL;
             }
         } else {
-            $this->db->where('UPPER(p.reference)', "LIKE UPPER('%PLAN%')");
+            $this->db->where('UPPER(p.reference)', "LIKE UPPER('%Plan%')");
             $query = $this->db->get();
             $result = $query->result_array();
             if ($query->num_rows() > 0) {
