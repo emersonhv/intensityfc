@@ -55,6 +55,25 @@ class Admin extends MY_Controller {
 		$this->load->view('layout/master',$paramts);
 	}
 
+	public function crear_plan($mensaje = null){
+		$prog = json_decode(file_get_contents('php://input'), true);
+		print_r($prog);	die;
+		/*$this->db->trans_start();
+		$this->db->trans_begin();
+
+		$this->db->query("INSERT INTO planes (name, reference, description, price, cantidad_citas, clasesxsemana) ".
+			"VALUES(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fecha']."','".$prog['hora']."',0)"
+		);
+
+		if ($this->db->trans_status() === FALSE) {
+			$this->db->trans_rollback();
+			echo json_encode(array('msg' =>  'No fue posible crear cita, intente nuevamente si persiste comuniquese con el proveedor.', 'tipo' => 'callout-danger'));
+		} else {
+			$this->db->trans_commit();
+			echo json_encode(array('msg' =>  'Cita creada con éxito.', 'tipo'=>'callout-success'));
+		}*/
+	}
+
 	public function wizard($mensaje = null){
 		$paramts['CI'] = $this->CI;
 		$paramts['leftmenu'] = 'pagina/left_menu';
