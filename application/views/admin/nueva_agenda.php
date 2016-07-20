@@ -26,7 +26,7 @@
                     <div class="modal-body">
                         <!-- Drop down Clientes -->
                         <label>Cliente</label>
-                        <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-model="cliente">
+                        <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-model="clientes">
                             <option ng-repeat="option in clientes" value="{{option.id}}" >{{ option.name }}</option>
                         </select>
 
