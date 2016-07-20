@@ -53,7 +53,7 @@ $route["asignar_plan"] = "admin/wizard";
 $route["insertar_citas"] = "admin/citas_aprogramadas";
 $route["ver_agenda"] = "admin/agenda";
 //Nueva Diseño para la agenda
-$route["nueva_agenda"] = "admin/agenda";
+$route["nueva_agenda"] = "admin/nueva_agenda";
 
 $route["obt_citas"] = "admin/get_citas";
 $route["cita/(:num)"] = "admin/ver_cita/$1";
