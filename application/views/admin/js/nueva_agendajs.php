@@ -79,7 +79,8 @@
 </script>    
 
 <script type="text/javascript"> 
-    agenda.controller('ClienteController', ['$scope', '$http', '$window',function($scope, $http, $window) {
+    agenda.module('ngrepeatSelect', [])
+    .controller('ClienteController', ['$scope', '$http', '$window',function($scope, $http, $window) {
             $scope.cliente;
             $scope.clientes; // listado de clientes
             

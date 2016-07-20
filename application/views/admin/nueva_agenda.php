@@ -7,14 +7,14 @@
             </div>
             <div class="box-body">
               <div class="box-footer">
-                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#nueva_cita" ng-click="ClienteController">Programada</button>
+                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#nueva_cita">Programada</button>
 				<button type="button" class="btn btn-block btn bg-navy">Manual</button>
               </div>
             </div>
           </div>
         </div>
         <!-- example-modal -->
-        <div class="example-modal">
+        <div class="example-modal" ng-controller="ClienteController">
             <div class="modal" id="nueva_cita" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -26,9 +26,7 @@
                     <div class="modal-body">
                         <!-- Drop down Clientes -->
                         <label>Cliente</label>
-                        <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-model="model">
-                            <option ng-repeat="cliente in clientes" value="{{cliente.id}}" > {{ cliente.name }} </option>
-                        </select>
+                        
                         <table class="table table-bordered table-hover">
                             <tbody>
                             <tr>
