@@ -1,6 +1,6 @@
 <script type="text/javascript">
-    agenda.controller('Agenda', ['$scope', '$http', '$window',function($scope, $http, $window) {
-        $scope.Calendario = function(){
+    
+        function Calendario(){
             var request = {
                 method: 'GET',
                 url: host+'obt_citas',
@@ -49,7 +49,7 @@
             });       
         }
     
-        $scope.ClienteController = function ($scope){
+        function ClienteController($scope){
             $scope.ClienteController = true;
                 $scope.cliente;
                 $scope.clientes; // listado de clientes
@@ -73,13 +73,16 @@
                     //$scope.status = response.status;
                 });
         }
-    }]);
+        
+        
 </script>
 
 <script>
     function calendar(eventos) {
 
-        /* initialize the calendar*/
+        /* initialize the calendar
+            agenda.controller('Agenda', ['$scope', '$http', '$window',function($scope, $http, $window) { }]);
+         */
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
