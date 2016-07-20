@@ -25,11 +25,12 @@
                     </div>
                     <div class="modal-body">
                         <!-- Drop down Clientes -->
-
+                        <label>Cliente</label>
                         <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-controller="Clientes_Lista">
                             <option value="{{cliente.id}}" ng-repeat="cliente in clientes">{{ cliente.name }}</option>
                         </select>
                         
+                        <label>Minimal</label>
                         <div class="row" ng-controller="Clientes_Lista">
                             <div class="input-group margin">
                                     <input type="text" class="form-control" ng-model="nombrecl" placeholder="Ingrese nombre de cliente">

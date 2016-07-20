@@ -115,6 +115,7 @@ class Admin extends MY_Controller {
 		$paramts['mensaje'] = $mensaje;
 		$paramts['desc_titulo'] = 'Agenda de citas';
 		$paramts['javascript'] = $this->load->view('admin/js/agendajs','', TRUE);
+		$paramts['javascript'] = $this->load->view('admin/js/cliente_listajs','', TRUE);
 		$this->load->view('layout/master',$paramts);
 	}
 
