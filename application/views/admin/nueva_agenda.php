@@ -1,40 +1,45 @@
 <div class="row" ng-controller="Agenda">
-    <div class="col-md-2">
+    <div class="col-md-3">
           <!-- /. box -->
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Programa una Clase</h3>
             </div>
             <div class="box-body">
-              <!--<div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                
-                <ul class="fc-color-picker" id="color-chooser">
-                  <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
-                  <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
-                </ul>
-              </div>-->
-              <!-- /btn-group -->
               <div class="box-footer">
-                <button type="button" class="btn btn-primary">Programada</button>
-				<button type="button" class="btn btn bg-navy">Manual</button>
+                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModal">Programada</button>
+				<button type="button" class="btn btn-block btn bg-navy">Manual</button>
               </div>
-              <!-- /input-group -->
             </div>
           </div>
         </div>
+        <!-- example-modal -->
+        <div class="example-modal">
+            <div class="modal" id="example-modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Default Modal</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        <!-- /.modal -->
+      </div>
+      <!-- /.example-modal -->
         <!-- /.col -->
-    <div class="col-md-10">
+    <div class="col-md-9">
         <?php if (isset($mensaje)) {?>
         <div class="alert alert-<?php isset($tipo) ? $tipo : ""; ?> alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -52,3 +57,4 @@
     </div>
     <!-- /.col -->
 </div>
+
