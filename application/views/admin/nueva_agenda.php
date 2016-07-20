@@ -15,7 +15,7 @@
         </div>
         <!-- example-modal -->
         <div class="example-modal">
-            <div class="modal" id="example-modal" tabindex="-1" role="dialog">
+            <div class="modal" id="exampleModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
