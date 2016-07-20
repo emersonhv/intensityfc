@@ -96,7 +96,7 @@
                 $scope.status = response.status;
                 $scope.data = response.data;
                 $scope.clientes: _.sortBy($scope.data, 'name');
-                
+            console.debug( response.data);
             }, function(response) {
                 alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
                 //$scope.data = response.data || "Request failed";
