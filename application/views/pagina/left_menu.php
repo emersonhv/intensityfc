@@ -22,29 +22,29 @@
                 </a>
             </li>-->
 			<li class="<?php echo $menu_activo == "Clientes" ? "active" : ""; ?>">
-                <a href="gestion_clientes">
+                <a href="/gestion_clientes">
                     <i class="fa fa-user"></i>
                     <span>Clientes</span>
                 </a>
             </li>
             <li class="<?php echo $menu_activo == "Planes" ? "active" : ""; ?>">
-                <a href="ver_planes">
+                <a href="/ver_planes">
                     <i class="fa fa-files-o"></i>
                     <span>Planes</span>
                 </a>
             </li>
             <li class="<?php echo $menu_activo == "Asignar" ? "active" : ""; ?>">
-                <a href="asignar_plan">
+                <a href="/asignar_plan">
                     <i class="fa fa-arrow-down"></i> <span>Asignar</span>
                 </a>
             </li>
             <li class="<?php echo $menu_activo == "Agenda" ? "active" : ""; ?>">
-                <a href="ver_agenda">
+                <a href="/ver_agenda">
                     <i class="fa fa-calendar"></i> <span>Agenda</span>
                 </a>
             </li>
              <li class="<?php echo $menu_activo == "Nueva Agenda" ? "active" : ""; ?>">
-                <a href="nueva_agenda">
+                <a href="/nueva_agenda">
                     <i class="fa fa-calendar"></i> <span>Nueva Agenda</span>
                 </a>
             </li>

@@ -7,7 +7,7 @@
             </div>
             <div class="box-body">
               <div class="box-footer">
-                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModal">Programada</button>
+                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#nueva_cita">Programada</button>
 				<button type="button" class="btn btn-block btn bg-navy">Manual</button>
               </div>
             </div>
@@ -15,20 +15,55 @@
         </div>
         <!-- example-modal -->
         <div class="example-modal">
-            <div class="modal" id="exampleModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
+            <div class="modal" id="nueva_cita" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Default Modal</h4>
+                        <h4 class="modal-title">Nueva Clase</h4>
                     </div>
                     <div class="modal-body">
-                        <p>One fine body&hellip;</p>
+                        <!-- Drop down Clientes -->
+                        <div class="row" ng-controller="Clientes_Lista">
+                            <div class="input-group margin">
+                                    <input type="text" class="form-control" ng-model="nombrecl" placeholder="Ingrese nombre de cliente">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-flat" ng-click="buscarCliente(nombrecl)">Buscar</button>
+                                </span>
+                            </div>
+                            <table class="table table-bordered table-hover">
+                                <tbody>
+                                <tr>
+                                    <th>
+                                        <i class="fa fa-check-square-o"></i>
+                                    </th>
+                                    <th>Nombre</th>
+                                    <th>C.C. / NIT</th>
+                                    <th>Email</th>
+                                </tr>
+                                <tr ng-repeat="cliente in clientes | filter:nombrecl">
+                                    <td>
+                                        <input class="" type="radio" id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" ng-click="seleccionarClie(this)">
+                                    </td>
+                                    <td><a>{{cliente.name}}</a></td>
+                                    <td>{{cliente.nit}}</td>
+                                    <td>{{cliente.email}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /Drop down Clientes -->
+
+                        <!-- Drop down Plan -->
+                        <!-- /Drop down Plan -->
+
+                        <!-- Drop down Datos Cita -->
+                        <!-- /Drop down Datos Cita -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
                     </div>
                     </div>
                     <!-- /.modal-content -->
