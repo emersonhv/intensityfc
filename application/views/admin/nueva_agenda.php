@@ -51,7 +51,7 @@
       </div>
       <!-- /.example-modal -->
         <!-- /.col -->
-    <div class="col-md-9" ng-controller="Calendario">
+    <div class="col-md-9" ng-controller="Agenda">
         <?php if (isset($mensaje)) {?>
         <div class="alert alert-<?php isset($tipo) ? $tipo : ""; ?> alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

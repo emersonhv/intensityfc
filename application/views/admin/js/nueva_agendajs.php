@@ -78,7 +78,7 @@
     
 </script>    
 
-<script>
+<script type="text/javascript"> 
     agenda.controller('ClienteController', ['$scope', '$http', '$window',function($scope, $http, $window) {
         
         $scope.ClienteController = true;
