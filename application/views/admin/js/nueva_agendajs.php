@@ -1,6 +1,6 @@
 
 <script>
-     function Calendario(){
+     function Calendario($scope){
             var request = {
                 method: 'GET',
                 url: host+'obt_citas',
@@ -49,6 +49,8 @@
             });       
         }
 
+
+
         function ClienteController($scope){
             $scope.ClienteController = true;
                 $scope.cliente;
@@ -74,6 +76,8 @@
                 });
         }
 
+    
+    
     function calendar(eventos) {
 
         /* initialize the calendar
