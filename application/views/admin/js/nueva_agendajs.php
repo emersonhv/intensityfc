@@ -80,11 +80,9 @@
 
 <script type="text/javascript"> 
     agenda.controller('ClienteController', ['$scope', '$http', '$window',function($scope, $http, $window) {
-        
-        $scope.ClienteController = true;
             $scope.cliente;
             $scope.clientes; // listado de clientes
-
+            
             var req = {
                 method: 'GET',
                 url: host + 'clientes',
@@ -97,8 +95,10 @@
             then(function(response) {
                 $scope.status = response.status;
                 $scope.data = response.data;
-                $scope.clientes = _.sortBy($scope.data, 'reference');
-                console.debug($scope.clientes);
+                $scope.clientes = {
+                    model : null,
+                    clientes_lista: _.sortBy($scope.data, 'reference');
+                } 
             }, function(response) {
                 alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
                 //$scope.data = response.data || "Request failed";
