@@ -48,7 +48,7 @@
                 //$scope.status = response.status;
             });       
         }
-
+}
 
 
         function ClienteController($scope){
