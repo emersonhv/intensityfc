@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row" ng-controller="Agenda">
     <div class="col-md-3">
           <!-- /. box -->
           <div class="box box-solid">
@@ -26,7 +26,7 @@
                     <div class="modal-body">
                         <!-- Drop down Clientes -->
                         <label>Cliente</label>
-                        <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-controller="ClienteController">
+                        <select class="form-control select2" id="cbxClientes" style="width: 100%;" >
                             <option value="{{cliente.id}}" ng-repeat="cliente in clientes">{{ cliente.name }}</option>
                         </select>
 
@@ -51,7 +51,7 @@
       </div>
       <!-- /.example-modal -->
         <!-- /.col -->
-    <div class="col-md-9" ng-controller="Agenda">
+    <div class="col-md-9" ng-controller="Calendario">
         <?php if (isset($mensaje)) {?>
         <div class="alert alert-<?php isset($tipo) ? $tipo : ""; ?> alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
