@@ -75,7 +75,7 @@
         });
     }
 
-    function ClienteController($scope){
+    function ClienteA($scope){
             $scope.ClienteController = true;
                 $scope.cliente;
                 $scope.clientes; // listado de clientes
