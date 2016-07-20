@@ -118,6 +118,18 @@ class Admin extends MY_Controller {
 		$this->load->view('layout/master',$paramts);
 	}
 
+	public function nueva_agenda($mensaje = null){
+		$paramts['CI'] = $this->CI;
+		$paramts['leftmenu'] = 'pagina/left_menu';
+		$paramts['menu_activo'] = 'Nueva Agenda';
+		$paramts['titulo'] = 'Nueva Agenda';
+		$paramts['contenido'] = 'admin/nueva_agenda';
+		$paramts['mensaje'] = $mensaje;
+		$paramts['desc_titulo'] = 'Agenda de citas';
+		$paramts['javascript'] = $this->load->view('admin/js/agendajs','', TRUE);
+		$this->load->view('layout/master',$paramts);
+	}
+
 	public function get_citas($mensaje=null)
 	{
 		$citas = $this->citas->get_citas();

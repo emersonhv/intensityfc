@@ -43,6 +43,11 @@
                     <i class="fa fa-calendar"></i> <span>Agenda</span>
                 </a>
             </li>
+             <li class="<?php echo $menu_activo == "Nueva Agenda" ? "active" : ""; ?>">
+                <a href="nueva_agenda">
+                    <i class="fa fa-calendar"></i> <span>Nueva Agenda</span>
+                </a>
+            </li>
             <li>
                <a href="#">
                   <i class="fa fa-key" aria-hidden="true"></i> <span>Cambiar contraseña</span>
