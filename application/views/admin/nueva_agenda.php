@@ -29,6 +29,7 @@
                         <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-controller="Clientes_Lista">
                             <option value="{{cliente.id}}" ng-repeat="cliente in clientes">{{ cliente.name }}</option>
                         </select>
+                        
                         <!-- /Drop down Clientes -->
 
                         <!-- Drop down Plan -->
