@@ -97,7 +97,7 @@
                 $scope.data = response.data;
                 $scope.clientes = {
                     model : null,
-                    clientes_lista: _.sortBy($scope.data, 'reference');
+                    clientes_lista: _.sortBy($scope.data, 'reference')
                 };
             }, function(response) {
                 alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
