@@ -1,6 +1,6 @@
-<script type="text/javascript">
-    
-        function Calendario(){
+
+<script>
+     function Calendario(){
             var request = {
                 method: 'GET',
                 url: host+'obt_citas',
@@ -48,7 +48,7 @@
                 //$scope.status = response.status;
             });       
         }
-    
+
         function ClienteController($scope){
             $scope.ClienteController = true;
                 $scope.cliente;
@@ -73,11 +73,7 @@
                     //$scope.status = response.status;
                 });
         }
-        
-        
-</script>
 
-<script>
     function calendar(eventos) {
 
         /* initialize the calendar
