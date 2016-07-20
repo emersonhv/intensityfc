@@ -1,4 +1,4 @@
-<div class="row" ng-controller="ClienteController">
+<div class="row" ng-controller="Agenda">
     <div class="col-md-3" >
           <!-- /. box -->
           <div class="box box-solid">
