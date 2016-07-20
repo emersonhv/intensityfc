@@ -22,12 +22,12 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Nueva Clase</h4>
-                    </div>
+                    </div> 
                     <div class="modal-body">
                         <!-- Drop down Clientes -->
                         <label>Cliente</label>
                         <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-model="clientes">
-                            <option ng-repeat="option in clientes" value="{{option.id}}" >{{ option.name }}</option>
+                            <option ng-repeat="cliente in clientes" value="{{cliente.id}}" >{{ cliente.name }}</option>
                         </select>
 
                         <!-- /Drop down Clientes -->
