@@ -1,5 +1,5 @@
-<div class="row" >
-    <div class="col-md-3" ng-controller="ClienteController">
+<div class="row" ng-controller="ClienteController">
+    <div class="col-md-3" >
           <!-- /. box -->
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -51,7 +51,7 @@
       </div>
       <!-- /.example-modal -->
         <!-- /.col -->
-    <div class="col-md-9" ng-controller="Calendario">
+    <div class="col-md-9" >
         <?php if (isset($mensaje)) {?>
         <div class="alert alert-<?php isset($tipo) ? $tipo : ""; ?> alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
