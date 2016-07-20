@@ -29,36 +29,6 @@
                         <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-controller="Clientes_Lista">
                             <option value="{{cliente.id}}" ng-repeat="cliente in clientes">{{ cliente.name }}</option>
                         </select>
-
-                        <label>Minimal</label>
-                        <div class="row" ng-controller="Clientes_Lista">
-                            <div class="input-group margin">
-                                    <input type="text" class="form-control" ng-model="nombrecl" placeholder="Ingrese nombre de cliente">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat" ng-click="buscarCliente(nombrecl)">Buscar</button>
-                                </span>
-                            </div>
-                            <table class="table table-bordered table-hover">
-                                <tbody>
-                                <tr>
-                                    <th>
-                                        <i class="fa fa-check-square-o"></i>
-                                    </th>
-                                    <th>Nombre</th>
-                                    <th>C.C. / NIT</th>
-                                    <th>Email</th>
-                                </tr>
-                                <tr ng-repeat="cliente in clientes | filter:nombrecl">
-                                    <td>
-                                        <input class="" type="radio" id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" ng-click="seleccionarClie(this)">
-                                    </td>
-                                    <td><a>{{cliente.name}}</a></td>
-                                    <td>{{cliente.nit}}</td>
-                                    <td>{{cliente.email}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
                         <!-- /Drop down Clientes -->
 
                         <!-- Drop down Plan -->
@@ -98,9 +68,3 @@
     </div>
     <!-- /.col -->
 </div>
-<script>
-    $(function(){
-        //Initialize Select2 Elements
-        $(".select2").select2();
-    });
-</script>
