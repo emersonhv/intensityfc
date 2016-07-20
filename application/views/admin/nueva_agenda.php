@@ -1,4 +1,4 @@
-<div class="row" ng-controller="Agenda">
+<div class="row" >
     <div class="col-md-3">
           <!-- /. box -->
           <div class="box box-solid">
@@ -29,7 +29,7 @@
                         <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-controller="Clientes_Lista">
                             <option value="{{cliente.id}}" ng-repeat="cliente in clientes">{{ cliente.name }}</option>
                         </select>
-                        
+
                         <label>Minimal</label>
                         <div class="row" ng-controller="Clientes_Lista">
                             <div class="input-group margin">
@@ -80,7 +80,7 @@
       </div>
       <!-- /.example-modal -->
         <!-- /.col -->
-    <div class="col-md-9">
+    <div class="col-md-9" ng-controller="Agenda">
         <?php if (isset($mensaje)) {?>
         <div class="alert alert-<?php isset($tipo) ? $tipo : ""; ?> alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
