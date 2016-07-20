@@ -1,5 +1,5 @@
 <div class="row" >
-    <div class="col-md-3" ng-controller="ClienteController">
+    <div class="col-md-3" >
           <!-- /. box -->
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -7,7 +7,7 @@
             </div>
             <div class="box-body">
               <div class="box-footer">
-                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#nueva_cita">Programada</button>
+                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#nueva_cita" ng-click="ClienteController">Programada</button>
 				<button type="button" class="btn btn-block btn bg-navy">Manual</button>
               </div>
             </div>
