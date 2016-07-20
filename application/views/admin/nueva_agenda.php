@@ -1,5 +1,5 @@
 <div class="row" >
-    <div class="col-md-3">
+    <div class="col-md-3" ng-controller="ClienteController">
           <!-- /. box -->
           <div class="box box-solid">
             <div class="box-header with-border">
