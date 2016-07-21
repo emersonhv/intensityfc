@@ -103,7 +103,9 @@
                 $scope.clientes = _.sortBy($scope.data, 'reference');
                $(".select2").select2({
                      placeholder: "Seleccione un cliente",
-                     allowClear: true
+                     allowClear: true,
+                     //Modal
+                     dropdownParent: $('#nueva_cita')
                 });
             }, function(response) {
                 alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");

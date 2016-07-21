@@ -9,9 +9,6 @@
               <div class="box-footer">
                 <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#nueva_cita">Programada</button>
 				<button type="button" class="btn btn-block btn bg-navy">Manual</button>
-                <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-model="model">
-                            <option ng-repeat="cliente in clientes" value="{{cliente.id}}" > {{ cliente.name }} </option>
-                        </select>
               </div>
             </div>
           </div>
