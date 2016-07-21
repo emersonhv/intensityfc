@@ -78,7 +78,7 @@
 
     function init_select(){
         //Initialize Select2 Elements
-        $(".select2").select2();
+        
     }
     
 </script>    
@@ -101,7 +101,10 @@
                 $scope.status = response.status;
                 $scope.data = response.data;
                 $scope.clientes = _.sortBy($scope.data, 'reference');
-                init_select();
+               $(".select2").select2({
+                     placeholder: "Seleccione un cliente",
+                     allowClear: true
+                });
             }, function(response) {
                 alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
                 //$scope.data = response.data || "Request failed";
