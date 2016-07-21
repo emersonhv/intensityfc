@@ -15,28 +15,28 @@
               <div class="box-body">
 				
                 <div class="form-group">
-                  <label for="nombre">Nombre</label>
-                  <input class="form-control" ng-model="plan.nombre" id="nombre" name="nombre" placeholder="Dato requerido" type="text" required/>
+                  <label for="name">Nombre</label>
+                  <input class="form-control" ng-model="plan.name" id="name" name="name" placeholder="Dato requerido" type="text" required/>
                 </div>
                 <div class="form-group">
-                  <label for="nit">Referencia</label>
-                  <input class="form-control" ng-model="plan.referencia" id="referencia" name="referencia" placeholder="" type="text"/>
+                  <label for="referencia">Referencia</label>
+                  <input class="form-control" ng-model="plan.referencia" id="reference" name="reference" placeholder="" type="text"/>
                 </div>
 				        <div class="form-group">
-                  <label for="direccion">Descripcion</label>
-                  <input class="form-control" ng-model="plan.descripcion" id="descripcion" name="descripcion" placeholder="" type="text"/>
+                  <label for="description">Descripcion</label>
+                  <input class="form-control" ng-model="plan.description" id="description" name="description" placeholder="" type="text"/>
                 </div>
 				        <div class="form-group">
-                  <label for="ciudad">Valor</label>
-                  <input class="form-control" ng-model="plan.valor" id="valor" name="valor" placeholder="Valor" type="text"/>
+                  <label for="price">Valor</label>
+                  <input class="form-control" ng-model="plan.price" id="price" name="price" placeholder="Valor" type="text"/>
                 </div>
 				      <div class="form-group">
-                  <label for="email">Cantidad clases</label>
+                  <label for="cantidad_citas">Cantidad clases</label>
                   <input class="form-control" ng-model="plan.cantidad_citas" id="cantidad_citas" name="cantidad_citas" placeholder="Cantidad Citas" type="text"/>
                 </div>
               </div>
               <div class="form-group">
-                  <label for="email">Cantidad clases por Mes</label>
+                  <label for="clasesxsemana">Cantidad clases por Mes</label>
                   <input class="form-control" ng-model="plan.clasesxsemana" id="clasesxsemana" name="clasesxsemana" placeholder="Clases por Semana" type="text"/>
                 </div>
               </div>
