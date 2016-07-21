@@ -60,9 +60,9 @@ class Admin extends MY_Controller {
 		
 		$this->db->trans_start();
 		$this->db->trans_begin();
-		echo"<pre>"; print_r($prog); echo"</pre>";
+		echo"<pre>"; print_r($prog['name']); echo"</pre>";
 		$this->db->query("INSERT INTO planes (name, reference, description, price, cantidad_citas, clasesxsemana) ".
-			"VALUES(".$prog['name'].",".$prog['reference'].",".$prog['description'].", '".$prog['price'] ."', '".$prog['cantidad_citas']."','".$prog['clasesxsemana']."')"
+			"VALUES('".$prog['name']."','".$prog['reference']."',''".$prog['description']."', '".$prog['price'] ."', '".$prog['cantidad_citas']."','".$prog['clasesxsemana']."')"
 		);
 		die; 
 		if ($this->db->trans_status() === FALSE) {
