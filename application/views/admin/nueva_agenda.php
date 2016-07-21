@@ -14,7 +14,7 @@
           </div>
         </div>
         <!-- example-modal -->
-        <div class="example-modal" ng-controller="ClienteController">
+        <div class="example-modal" ng-controller="ClienteController" ng-init="init_select">
             <div class="modal" id="nueva_cita" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
