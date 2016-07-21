@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                   <label for="referencia">Referencia</label>
-                  <input class="form-control" ng-model="plan.referencia" id="reference" name="reference" placeholder="" type="text"/>
+                  <input class="form-control" ng-model="plan.reference" id="reference" name="reference" placeholder="" type="text"/>
                 </div>
 				        <div class="form-group">
                   <label for="description">Descripcion</label>
