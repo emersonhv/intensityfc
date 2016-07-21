@@ -24,22 +24,23 @@
                         <h4 class="modal-title">Nueva Clase</h4>
                     </div> 
                     <div class="modal-body">
-                    <div class="form-group">
-                        <!-- Drop down Clientes -->
-                        <label>Cliente</label>
-                        <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-model="model">
-                            <option ng-repeat="cliente in clientes" value="{{cliente.id}}" > {{ cliente.name }} </option>
-                        </select>
-                    
-                        <!-- /Drop down Clientes -->
+                        <div class="form-group">
+                            <!-- Drop down Clientes -->
+                            <label>Cliente</label>
+                            <select class="form-control select2" id="cbxClientes" style="width: 80%;" ng-model="model">
+                                <option ng-repeat="cliente in clientes" value="{{cliente.id}}" > {{ cliente.name }} </option>
+                            </select>
+                            <button type="button" class="btn btn-primary" ng-click="consultarFactura();">Consultar Pago</button>
+                            <!-- /Drop down Clientes -->
 
-                        <!-- Drop down Plan -->
-                        <!-- /Drop down Plan -->
+                            <!-- Drop down Plan -->
+                            
+                            <!-- /Drop down Plan -->
 
-                        <!-- Drop down Datos Cita -->
-                        <!-- /Drop down Datos Cita -->
+                            <!-- Drop down Datos Cita -->
+                            <!-- /Drop down Datos Cita -->
+                            </div>
                         </div>
-                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn btn-primary">Guardar</button>
