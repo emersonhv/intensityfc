@@ -1,5 +1,5 @@
 <div class="row" >
-    <div class="col-md-3" >
+    <div class="col-md-3" ng-controller="ClienteController">
           <!-- /. box -->
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -9,12 +9,15 @@
               <div class="box-footer">
                 <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#nueva_cita">Programada</button>
 				<button type="button" class="btn btn-block btn bg-navy">Manual</button>
+                <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-model="model">
+                            <option ng-repeat="cliente in clientes" value="{{cliente.id}}" > {{ cliente.name }} </option>
+                        </select>
               </div>
             </div>
           </div>
         </div>
         <!-- example-modal -->
-        <div class="example-modal" ng-controller="ClienteController" ng-init="init_select">
+        <div class="example-modal">
             <div class="modal" id="nueva_cita" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
