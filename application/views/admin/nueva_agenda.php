@@ -26,30 +26,9 @@
                     <div class="modal-body">
                         <!-- Drop down Clientes -->
                         <label>Cliente</label>
-                        
-                        <table class="table table-bordered table-hover">
-                            <tbody>
-                            <tr>
-                                <th>
-                                    <i class="fa fa-check-square-o"></i>
-                                </th>
-                                <th>Nombre</th>
-                                <th>C.C. / NIT</th>
-                                <th>Email</th>
-                            </tr>
-                            <tr ng-repeat="cliente in clientes | filter:nombrecl">
-                                <td>
-                                    <!--input class="" type="radio" id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" ng-click="seleccionarClie(this)"-->
-                                    <!--a id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" class="btn btn-info btn-flat" href="prueba.intensityfc.com/citas_cliente/:id">Ver Citas</a-->
-                                    <a id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" class="label btn-info" href="citas/cliente/{{ cliente.id }}">Ver Citas</a>
-                                    <a id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" class="label btn-info" href="cliente/{{ cliente.id }}">Editar</a>
-                                </td>
-                                <td><a>{{cliente.name}}</a></td>
-                                <td>{{cliente.nit}}</td>
-                                <td>{{cliente.email}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <select class="form-control select2" id="cbxClientes" style="width: 100%;" ng-model="model">
+                            <option ng-repeat="cliente in clientes" value="{{cliente.id}}" > {{ cliente.name }} </option>
+                        </select>
                         <!-- /Drop down Clientes -->
 
                         <!-- Drop down Plan -->
