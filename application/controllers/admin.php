@@ -61,7 +61,7 @@ class Admin extends MY_Controller {
 		$this->db->trans_start();
 		$this->db->trans_begin();
 		$insert = "INSERT INTO planes (name, reference, description, price, cantidad_citas, clasesxsemana) ";
-		$values = "VALUES ('".$prog['name']."','".$prog['reference']."',''".$prog['description']."', '".$prog['price'] ."', '".$prog['cantidad_citas']."','".$prog['clasesxsemana']."')";
+		$values = "VALUES ('".$prog['name']."','".$prog['reference']."','".$prog['description']."', '".$prog['price'] ."', '".$prog['cantidad_citas']."','".$prog['clasesxsemana']."')";
 
 		print_r($insert . ' '. $values);
 		$this->db->query($insert . ' '. $values);
