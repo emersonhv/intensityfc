@@ -1,4 +1,4 @@
-<div class="row" ng-controller="VerPlanes" >
+<div class="row"  >
 
    <div class="col-md-12">
 		<div class="alert {{datacli.tipo}}" ng-show="datacli.tipo">
