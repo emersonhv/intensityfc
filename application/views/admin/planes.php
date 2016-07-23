@@ -11,7 +11,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <pre><?php print_r($plan);?> </pre>
+            <!--pre><?php print_r($plan);?> </pre-->
             <form method="POST" ng-submit="crearPlan()" >
               <div class="box-body" ng-init="idPlan = <?php echo $plan['id'];?>">
 				
