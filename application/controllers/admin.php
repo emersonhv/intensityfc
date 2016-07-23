@@ -75,6 +75,19 @@ class Admin extends MY_Controller {
 		}
 	}
 
+	public function get_plan($id){
+		$plan = $this->planes->get_planes($id);
+		$paramts['CI'] = $this->CI;
+		$paramts['leftmenu'] = 'pagina/left_menu';
+		$paramts['menu_activo'] = 'Planes';
+		$paramts['titulo'] = 'Consultar Plan';
+		$paramts['contenido'] = 'admin/planes';
+		$paramts['plan'] = $plan;
+		$paramts['desc_titulo'] = 'Vista general de planes';
+		$paramts['javascript'] = $this->load->view('admin/js/planesjs','', TRUE);
+		$this->load->view('layout/master',$paramts);
+	}
+
 	public function wizard($mensaje = null){
 		$paramts['CI'] = $this->CI;
 		$paramts['leftmenu'] = 'pagina/left_menu';
