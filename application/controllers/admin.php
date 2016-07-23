@@ -77,6 +77,7 @@ class Admin extends MY_Controller {
 
 	public function get_plan($id){
 		$plan = $this->planes->get_planes($id);
+		echo "<pre>"; print_r($plan);echo "</pre>";die;
 		$paramts['CI'] = $this->CI;
 		$paramts['leftmenu'] = 'pagina/left_menu';
 		$paramts['menu_activo'] = 'Planes';
