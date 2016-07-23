@@ -29,6 +29,7 @@ class Admin extends MY_Controller {
 	 *
 	 */
 	public function verplanes($mensaje = null){
+		$plan = "";
 		$paramts['CI'] = $this->CI;
 		$paramts['leftmenu'] = 'pagina/left_menu';
 		$paramts['menu_activo'] = 'Planes';
