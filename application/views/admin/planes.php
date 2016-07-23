@@ -35,7 +35,7 @@
                   <label for="cantidad_citas">Cantidad clases</label>
                   <input type="text" class="form-control" ng-model="plan.cantidad_citas" id="cantidad_citas" name="cantidad_citas" placeholder="Cantidad Citas" value="<?php echo $plan['cantidad_citas'];?>" />
                 </div>
-              </div>
+              
               <div class="form-group">
                   <label for="clasesxsemana">Cantidad clases por Mes</label>
                   <input type="text" class="form-control" ng-model="plan.clasesxsemana" id="clasesxsemana" name="clasesxsemana" placeholder="Clases por Semana" value="<?php echo $plan['clasesxsemana'];?>"/>
