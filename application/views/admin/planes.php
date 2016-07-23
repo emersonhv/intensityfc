@@ -17,28 +17,28 @@
 				
                 <div class="form-group">
                   <label for="name">Nombre</label>
-                  <input class="form-control" ng-model="plan.name" id="name" name="name" placeholder="Dato requerido" value="<?php echo $plan['name'];?>" ngShow="<?php echo $plan['name'];?>" type="text" required/>
+                  <input type="text"  class="form-control" ng-model="plan.name" id="name" name="name" placeholder="Dato requerido" value="<?php echo $plan['name'];?>" ngShow="<?php echo $plan['name'];?>" required/>
                 </div>
                 <div class="form-group">
                   <label for="referencia">Referencia</label>
-                  <input class="form-control" ng-model="plan.reference" id="reference" name="reference" placeholder="" value="<?php echo $plan['reference'];?>" ngShow="<?php echo $plan['reference'];?>" type="text"/>
+                  <input type="text" class="form-control" ng-model="plan.reference" id="reference" name="reference" placeholder="" value="<?php echo $plan['reference'];?>" ngShow="<?php echo $plan['reference'];?>" />
                 </div>
 				        <div class="form-group">
                   <label for="description">Descripcion</label>
-                  <input class="form-control" ng-model="plan.description" id="description" name="description" placeholder="" value="<?php echo $plan['description'];?>" ngShow="<?php echo $plan['description'];?>" type="text"/>
+                  <input type="text" class="form-control" ng-model="plan.description" id="description" name="description" placeholder="" value="<?php echo $plan['description'];?>" ngShow="<?php echo $plan['description'];?>" />
                 </div>
 				        <div class="form-group">
                   <label for="price">Valor</label>
-                  <input class="form-control" ng-model="plan.price" id="price" name="price" placeholder="Valor" value="<?php echo $plan['price'];?>"  ngShow="<?php echo $plan['price'];?>" type="text"/>
+                  <input  type="text" class="form-control" ng-model="plan.price" id="price" name="price" placeholder="Valor" value="<?php echo $plan['price'];?>"  ngShow="<?php echo $plan['price'];?>"/>
                 </div>
 				      <div class="form-group">
                   <label for="cantidad_citas">Cantidad clases</label>
-                  <input class="form-control" ng-model="plan.cantidad_citas" id="cantidad_citas" name="cantidad_citas" placeholder="Cantidad Citas" value="<?php echo $plan['cantidad_citas'];?>" ngShow="<?php echo $plan['cantidad_citas'];?>"  type="text"/>
+                  <input type="text" class="form-control" ng-model="plan.cantidad_citas" id="cantidad_citas" name="cantidad_citas" placeholder="Cantidad Citas" value="<?php echo $plan['cantidad_citas'];?>" ngShow="<?php echo $plan['cantidad_citas'];?>" />
                 </div>
               </div>
               <div class="form-group">
                   <label for="clasesxsemana">Cantidad clases por Mes</label>
-                  <input class="form-control" ng-model="plan.clasesxsemana" id="clasesxsemana" name="clasesxsemana" placeholder="Clases por Semana" value="<?php echo $plan['clasesxsemana'];?>" ngShow="<?php echo $plan['clasesxsemana'];?>"  type="text"/>
+                  <input type="text" class="form-control" ng-model="plan.clasesxsemana" id="clasesxsemana" name="clasesxsemana" placeholder="Clases por Semana" value="<?php echo $plan['clasesxsemana'];?>" ngShow="<?php echo $plan['clasesxsemana'];?>"/>
                 </div>
               </div>
               <!-- /.box-body -->
