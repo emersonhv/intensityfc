@@ -17,13 +17,9 @@
 
    <div class="col-md-12 col-sm-12 col-xs-12">
       <!-- /.col -->
-      <?php if(isset($mensaje) && $mensaje != null) { ?>
-      <div class="alert alert-success alert-dismissible">
-         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-         <h4><i class="icon fa fa-check"></i> Alert!</h4>
-         <?php echo $mensaje; ?>
+      <div class="callout" ng-show="mensaje.msg" ng-class="mensaje.tipo">
+        <p>{{mensaje.msg}}</p>
       </div>
-     <?php } ?>
       <div class="nav-tabs-custom">
          <ul class="nav nav-tabs">
             <li class="active">
@@ -80,26 +76,16 @@
             </div>
             <!-- /.tab-pane -->
             <div class="tab-pane" id="tab_3">
-
-              <div class="callout" ng-show="mensaje.msg" ng-class="mensaje.tipo">
-                <p>{{mensaje.msg}}</p>
-              </div>
-                <!--div class="form-group">
-                  <label>Tipo de programación de citas</label>
-                  <select class="form-control" ng-model="tipo">
-                    <option value="1">Programadas</option>
-                    <option value="2">Personalizadas</option>
-                  </select>
-                </div-->
                 <div class="text-red">
                    <span><b>CLIENTE:</b> {{clieSel.name}} </span> <br>
-                   <span><b>PLAN:</b> {{planSel.name}} - {{planSel.price[0].price | currency}} COP</span>
+                   <span><b>PLAN:</b> {{planSel.name}} - {{planSel.price[0].price | currency}} COP | 
+                   {{planDescripcion.clases}} clases 
+                   </span>
                 </div>
-                <div class="programadas" > <!--ng-show="tipo == 1"-->
-                   <!--h2>Programadas</h2-->
+                <div class="programadas" ng-show="planDescripcion.clasesxsemana == 1"> <!--ng-show="tipo == 1"-->
                    <form name="form_wizard" ng-submit="enviar_tarea_programada()">
                      <div class="form-group">
-                        <label>Fecha del día:</label>
+                        <label>Fecha de la cita:</label>
                         <div class="input-group">
                           <input type="date" class="form-control dateepicker" ng-model="fecha" placeholder="yyyy-mm-dd - Ingrese fecha deseada">
                           <div class="input-group-addon">
@@ -108,7 +94,7 @@
                         </div>
                      </div>
                       <div class="form-group">
-                         <label>Hora del día:</label>
+                         <label>Hora de la cita:</label>
                          <div class="input-group">
                            <input name ="hora" type="text" class="form-control timepicker" ng-model="hora" placeholder="hh:mm:ss - Ingrese formato 24h" required>
                            <div class="input-group-addon">
@@ -124,9 +110,53 @@
                    </form>
                 </div>
 
-                <!--div class="personalizadas" ng-hide="tipo == 1 || tipo == undefinned">
-                   <h2>Personalizadas</h2>
-                </div-->
+                <div class="personalizadas" ng-show="planDescripcion.clasesxsemana == 2">
+                   <form name="form_wizard" ng-submit="enviar_tarea_programada()">
+                    <!--CITA 1-->
+                     <div class="form-group">
+                        <label>Fecha de la primara cita:</label>
+                        <div class="input-group">
+                          <input type="date" class="form-control dateepicker" ng-model="fecha_c1" placeholder="yyyy-mm-dd - Ingrese fecha deseada">
+                          <div class="input-group-addon">
+                             <i class="fa fa-calendar"></i>
+                          </div>
+                        </div>
+                     </div>
+                      <div class="form-group">
+                         <label>Hora de la primera cita:</label>
+                         <div class="input-group">
+                           <input name ="hora" type="text" class="form-control timepicker" ng-model="hora_c1" placeholder="hh:mm:ss - Ingrese formato 24h" required>
+                           <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                           </div>
+                         </div>
+                      </div>
+                      <!--CITA 2-->
+                      <div class="form-group">
+                        <label>Fecha de la segunda cita:</label>
+                        <div class="input-group">
+                          <input type="date" class="form-control dateepicker" ng-model="fecha_c2" placeholder="yyyy-mm-dd - Ingrese fecha deseada">
+                          <div class="input-group-addon">
+                             <i class="fa fa-calendar"></i>
+                          </div>
+                        </div>
+                     </div>
+                      <div class="form-group">
+                         <label>Hora de la segunda cita:</label>
+                         <div class="input-group">
+                           <input name ="hora" type="text" class="form-control timepicker" ng-model="hora_c2" placeholder="hh:mm:ss - Ingrese formato 24h" required>
+                           <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                           </div>
+                         </div>
+                      </div>
+                      <div class="form-group">
+                         <button type="submit" class="btn btn-primary btn-lg btn-block">
+                           <i class="fa fa-floppy-o"></i> Guardar
+                         </button>
+                      </div>
+                   </form>
+                </div>
             </div>
          </div>
          <!-- /.tab-pane -->

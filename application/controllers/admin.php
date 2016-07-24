@@ -66,10 +66,18 @@ class Admin extends MY_Controller {
 
 		$this->db->trans_start();
 		$this->db->trans_begin();
-
-		$this->db->query("INSERT INTO citas (id_cliente, nombre_cliente, id_plan, nombre_plan, fecha, hora, aplazada) ".
-			"VALUES(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fecha']."','".$prog['hora']."',0)"
-		);
+		
+		if($prog['clasesPorsemana'] == "1"){
+			$this->db->query("INSERT INTO citas (id_cliente, nombre_cliente, id_plan, nombre_plan, fecha, hora, aplazada) ".
+				"VALUES (".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fecha']."','".$prog['hora']."',0)"
+			);
+		} else {
+			$this->db->query("INSERT INTO citas (id_cliente, nombre_cliente, id_plan, nombre_plan, fecha, hora, aplazada) ".
+				"VALUES ".
+				"(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fechaCita1']."','".$prog['horaCita1']."',0), ".
+				"(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fechaCita2']."','".$prog['horaCita2']."',0) "
+			);
+		}
 
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
@@ -80,6 +88,16 @@ class Admin extends MY_Controller {
 		}
 		//$this->load->view('layout/master',$paramts);
 	}
+
+	/*function buscarRangoDeHora($idcliente, $fecha, $hora){
+		$this->db->select("*");
+        $this->db->from('citas c');
+		$this->db->where('c.id_cliente', $idcliente);
+		$this->db->where('c.fecha', $fecha);
+		$this->db->where('c.hora', $fecha);
+		$query = $this->db->get();
+        $result = $query->result_array();
+	}*/
 
 	public function agenda($mensaje = null){
 		$paramts['CI'] = $this->CI;
