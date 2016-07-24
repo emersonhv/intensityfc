@@ -53,20 +53,22 @@
                       <i class="fa fa-check-square-o"></i>
                   </th>
                   <th>Nombre</th>
-                  <th>Referencia</th>
                   <th>Valor</th>
+                  <th>Cantidad citas</th>
+                  <th>Citas por Semana</th>
                   <th>Color</th>
               </tr>
               <tr ng-repeat="plan in planes | filter:nombrecl">
                   <td>
                       <!--input class="" type="radio" id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" ng-click="seleccionarClie(this)"-->
                       <!--a id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" class="btn btn-info btn-flat" href="prueba.intensityfc.com/citas_cliente/:id">Ver Citas</a-->
-                      <a id="plan{{$index+1}}" name="plan" value="{{plan.id}}" class="label btn-info" href="plan/{{ plan.id }}">Ver Plan</a>
-                      <a id="plan{{$index+1}}" name="plan" value="{{plan.id}}" class="label btn-info" href="plan/{{ plan.id }}">Editar</a>
+                      <a id="plan{{$index+1}}" name="plan" value="{{plan.id}}" class="label btn-info" href="ver_plan/{{ plan.id }}">Ver Plan</a>
+                      <a id="plan{{$index+1}}" name="plan" value="{{plan.id}}" class="label btn-info" href="ver_plan/{{ plan.id }}">Editar</a>
                   </td>
                   <td><a>{{plan.name}}</a></td>
-                  <td>{{plan.description.split('\n')[0]}}</td>
-                  <td>{{plan.price[0].price | currency}} COP</td>
+                  <td>{{plan.price | currency}} COP</td>
+                  <td>{{plan.cantidad_citas}}</td>
+                  <td>{{plan.clasesxsemana }}</td>
                   <td class="{{color[$index]}}"> </td>
               </tr>
               </tbody>

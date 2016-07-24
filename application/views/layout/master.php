@@ -21,7 +21,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
 	   folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/skins/_all-skins.css'); ?>">
-
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/select2/select2.min.css'); ?>">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -113,6 +114,9 @@
     <script src="//underscorejs.org/underscore-min.js"></script>
     <script src="<?php echo base_url("assets/dist/js/aplicacion.js"); ?>"></script>
 	<script src="<?php echo base_url("assets/config.js"); ?>"></script>
+    <!-- Select2 -->
+    <script src="<?php echo base_url("assets/plugins/select2/select2.full.min.js"); ?>"></script>
+    
     <?php
     //if($CI->session->userdata('logged_in')){
         if(isset($javascript)){
