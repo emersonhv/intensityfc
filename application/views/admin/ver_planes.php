@@ -62,8 +62,8 @@
                   <td>
                       <!--input class="" type="radio" id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" ng-click="seleccionarClie(this)"-->
                       <!--a id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" class="btn btn-info btn-flat" href="prueba.intensityfc.com/citas_cliente/:id">Ver Citas</a-->
-                      <a id="plan{{$index+1}}" name="plan" value="{{plan.id}}" class="label btn-info" href="plan/{{ plan.id }}">Ver Plan</a>
-                      <a id="plan{{$index+1}}" name="plan" value="{{plan.id}}" class="label btn-info" href="plan/{{ plan.id }}">Editar</a>
+                      <a id="plan{{$index+1}}" name="plan" value="{{plan.id}}" class="label btn-info" href="ver_plan/{{ plan.id }}">Ver Plan</a>
+                      <a id="plan{{$index+1}}" name="plan" value="{{plan.id}}" class="label btn-info" href="ver_plan/{{ plan.id }}">Editar</a>
                   </td>
                   <td><a>{{plan.name}}</a></td>
                   <td>{{plan.price | currency}} COP</td>

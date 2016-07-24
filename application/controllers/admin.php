@@ -29,11 +29,13 @@ class Admin extends MY_Controller {
 	 *
 	 */
 	public function verplanes($mensaje = null){
+		$plan = "";
 		$paramts['CI'] = $this->CI;
 		$paramts['leftmenu'] = 'pagina/left_menu';
 		$paramts['menu_activo'] = 'Planes';
 		$paramts['titulo'] = 'Planes';
 		$paramts['contenido'] = 'admin/ver_planes';
+		$paramts['plan'] = $plan;
 		$paramts['desc_titulo'] = 'Vista general de planes';
 		$paramts['javascript'] = $this->load->view('admin/js/planesjs','', TRUE);
 		$this->load->view('layout/master',$paramts);
@@ -60,11 +62,12 @@ class Admin extends MY_Controller {
 		
 		$this->db->trans_start();
 		$this->db->trans_begin();
+		$insert = "INSERT INTO planes (name, reference, description, price, cantidad_citas, clasesxsemana) ";
+		$values = "VALUES ('".$prog['name']."','".$prog['reference']."','".$prog['description']."', '".$prog['price'] ."', '".$prog['cantidad_citas']."','".$prog['clasesxsemana']."')";
 
-		$this->db->query("INSERT INTO planes (name, reference, description, price, cantidad_citas, clasesxsemana) ".
-			"VALUES(".$prog['name'].",".$prog['reference'].",".$prog['description'].",'".$prog['cantidad_citas']."','".$prog['clasesxsemana']."')"
-		);
-
+		print_r($insert . ' '. $values);
+		$this->db->query($insert . ' '. $values);
+		
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
 			echo json_encode(array('msg' =>  'No fue posible crear plan, intente nuevamente si persiste comuniquese con el proveedor.', 'tipo' => 'callout-danger'));
@@ -72,6 +75,19 @@ class Admin extends MY_Controller {
 			$this->db->trans_commit();
 			echo json_encode(array('msg' =>  'Plan creado con éxito.', 'tipo'=>'callout-success'));
 		}
+	}
+
+	public function get_plan($id){
+		$plan = $this->planes->get_planes($id);
+		$paramts['CI'] = $this->CI;
+		$paramts['leftmenu'] = 'pagina/left_menu';
+		$paramts['menu_activo'] = 'Planes';
+		$paramts['titulo'] = 'Consultar Plan';
+		$paramts['contenido'] = 'admin/planes';
+		$paramts['plan'] = $plan;
+		$paramts['desc_titulo'] = 'Vista general de planes';
+		$paramts['javascript'] = $this->load->view('admin/js/planesjs','', TRUE);
+		$this->load->view('layout/master',$paramts);
 	}
 
 	public function wizard($mensaje = null){
@@ -126,7 +142,7 @@ class Admin extends MY_Controller {
 		$paramts['contenido'] = 'admin/nueva_agenda';
 		$paramts['mensaje'] = $mensaje;
 		$paramts['desc_titulo'] = 'Agenda de citas';
-		$paramts['javascript'] = $this->load->view('admin/js/agendajs','', TRUE);
+		$paramts['javascript'] = $this->load->view('admin/js/nueva_agendajs','', TRUE);
 		$this->load->view('layout/master',$paramts);
 	}
 

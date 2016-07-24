@@ -1,4 +1,4 @@
-<div class="row" ng-controller="VerPlanes" >
+<div class="row"  >
 
    <div class="col-md-12">
 		<div class="alert {{datacli.tipo}}" ng-show="datacli.tipo">
@@ -11,33 +11,34 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form method="POST" ng-submit="crearPlan()">
-              <div class="box-body">
+            <!--pre><?php print_r($plan);?> </pre-->
+            <form method="POST" ng-submit="crearPlan()" >
+              <div class="box-body" ng-init="idPlan = <?php echo $plan['id'];?>">
 				
                 <div class="form-group">
-                  <label for="nombre">Nombre</label>
-                  <input class="form-control" ng-model="plan.nombre" id="nombre" name="nombre" placeholder="Dato requerido" type="text" required/>
+                  <label for="name">Nombre</label>
+                  <input type="text"  class="form-control" ng-model="plan.name" id="name" name="name" value="<?php echo $plan['name'];?>" required/>
                 </div>
                 <div class="form-group">
-                  <label for="nit">Referencia</label>
-                  <input class="form-control" ng-model="plan.referencia" id="referencia" name="referencia" placeholder="" type="text"/>
+                  <label for="referencia">Referencia</label>
+                  <input type="text" class="form-control" ng-model="plan.reference" id="reference" name="reference" placeholder="" value="<?php echo $plan['reference'];?>"  />
                 </div>
 				        <div class="form-group">
-                  <label for="direccion">Descripcion</label>
-                  <input class="form-control" ng-model="plan.descripcion" id="descripcion" name="descripcion" placeholder="" type="text"/>
+                  <label for="description">Descripcion</label>
+                  <input type="text" class="form-control" ng-model="plan.description" id="description" name="description" placeholder="" value="<?php echo $plan['description'];?>" />
                 </div>
 				        <div class="form-group">
-                  <label for="ciudad">Valor</label>
-                  <input class="form-control" ng-model="plan.valor" id="valor" name="valor" placeholder="Valor" type="text"/>
+                  <label for="price">Valor</label>
+                  <input  type="text" class="form-control" ng-model="plan.price" id="price" name="price" placeholder="Valor" value="<?php echo $plan['price'];?>" />
                 </div>
 				      <div class="form-group">
-                  <label for="email">Cantidad clases</label>
-                  <input class="form-control" ng-model="plan.cantidad_citas" id="cantidad_citas" name="cantidad_citas" placeholder="Cantidad Citas" type="text"/>
+                  <label for="cantidad_citas">Cantidad clases</label>
+                  <input type="text" class="form-control" ng-model="plan.cantidad_citas" id="cantidad_citas" name="cantidad_citas" placeholder="Cantidad Citas" value="<?php echo $plan['cantidad_citas'];?>" />
                 </div>
-              </div>
+              
               <div class="form-group">
-                  <label for="email">Cantidad clases por Mes</label>
-                  <input class="form-control" ng-model="plan.clasesxsemana" id="clasesxsemana" name="clasesxsemana" placeholder="Clases por Semana" type="text"/>
+                  <label for="clasesxsemana">Cantidad clases por Mes</label>
+                  <input type="text" class="form-control" ng-model="plan.clasesxsemana" id="clasesxsemana" name="clasesxsemana" placeholder="Clases por Semana" value="<?php echo $plan['clasesxsemana'];?>"/>
                 </div>
               </div>
               <!-- /.box-body -->

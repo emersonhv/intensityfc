@@ -1,5 +1,5 @@
-<div class="row" ng-controller="Agenda">
-    <div class="col-md-3">
+<div class="row" >
+    <div class="col-md-3" >
           <!-- /. box -->
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -14,7 +14,7 @@
           </div>
         </div>
         <!-- example-modal -->
-        <div class="example-modal">
+        <div class="example-modal" ng-controller="ClienteController">
             <div class="modal" id="nueva_cita" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -22,45 +22,25 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Nueva Clase</h4>
-                    </div>
+                    </div> 
                     <div class="modal-body">
-                        <!-- Drop down Clientes -->
-                        <div class="row" ng-controller="Clientes_Lista">
-                            <div class="input-group margin">
-                                    <input type="text" class="form-control" ng-model="nombrecl" placeholder="Ingrese nombre de cliente">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat" ng-click="buscarCliente(nombrecl)">Buscar</button>
-                                </span>
+                        <div class="form-group">
+                            <!-- Drop down Clientes -->
+                            <label>Cliente</label>
+                            <select class="form-control select2" id="cbxClientes" style="width: 80%;" ng-model="model">
+                                <option ng-repeat="cliente in clientes" value="{{cliente.id}}" > {{ cliente.name }} </option>
+                            </select>
+                            <button type="button" class="btn btn-primary" ng-click="consultarFactura();">Consultar Pago</button>
+                            <!-- /Drop down Clientes -->
+
+                            <!-- Drop down Plan -->
+                            
+                            <!-- /Drop down Plan -->
+
+                            <!-- Drop down Datos Cita -->
+                            <!-- /Drop down Datos Cita -->
                             </div>
-                            <table class="table table-bordered table-hover">
-                                <tbody>
-                                <tr>
-                                    <th>
-                                        <i class="fa fa-check-square-o"></i>
-                                    </th>
-                                    <th>Nombre</th>
-                                    <th>C.C. / NIT</th>
-                                    <th>Email</th>
-                                </tr>
-                                <tr ng-repeat="cliente in clientes | filter:nombrecl">
-                                    <td>
-                                        <input class="" type="radio" id="cliente{{$index+1}}" name="cliente" value="{{cliente.id}}" ng-click="seleccionarClie(this)">
-                                    </td>
-                                    <td><a>{{cliente.name}}</a></td>
-                                    <td>{{cliente.nit}}</td>
-                                    <td>{{cliente.email}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
                         </div>
-                        <!-- /Drop down Clientes -->
-
-                        <!-- Drop down Plan -->
-                        <!-- /Drop down Plan -->
-
-                        <!-- Drop down Datos Cita -->
-                        <!-- /Drop down Datos Cita -->
-                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn btn-primary">Guardar</button>
@@ -74,7 +54,7 @@
       </div>
       <!-- /.example-modal -->
         <!-- /.col -->
-    <div class="col-md-9">
+    <div class="col-md-9" ng-controller="Agenda">
         <?php if (isset($mensaje)) {?>
         <div class="alert alert-<?php isset($tipo) ? $tipo : ""; ?> alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -92,4 +72,3 @@
     </div>
     <!-- /.col -->
 </div>
-
