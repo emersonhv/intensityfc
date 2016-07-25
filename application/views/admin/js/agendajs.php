@@ -5,10 +5,9 @@
           url: host+'obt_citas',
           headers:{'Content-Type': 'application/json'}
       };
-      $http(request).
-       then(function(response) {
+      $http(request).then(function(response) {
            $scope.citas = response.data;
-           console.log(response.status);
+           //console.log(response.status);
            var cit = $scope.citas;
            $scope.eventos = [];
            var date = new Date();
@@ -35,7 +34,7 @@
 				 });
 			   }
 		   }
-           console.log($scope.eventos);
+           //console.log($scope.eventos);
            calendar($scope.eventos);
        }, function(response) {
            alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
