@@ -24,7 +24,6 @@
                     //$scope.status = response.status;
                 });
         }
-        
         /*
         $scope.guardarPlanAlegra = function(){
 			$http.defaults.headers.common.Authorization = Auth;
