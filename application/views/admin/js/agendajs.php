@@ -5,10 +5,9 @@
           url: host+'obt_citas',
           headers:{'Content-Type': 'application/json'}
       };
-      $http(request).
-       then(function(response) {
+      $http(request).then(function(response) {
            $scope.citas = response.data;
-           console.log(response.status);
+           //console.log(response.status);
            var cit = $scope.citas;
            $scope.eventos = [];
            var date = new Date();
@@ -22,7 +21,7 @@
 				 if(cit[i].nombre_plan.indexOf("CLASE CORTESIA") > -1){
 					 backgroundColor = "#3c8dbc";//azul
 					 borderColor = "#3c8dbc";//azul
-				 }else{
+				 } else {
 					 backgroundColor = "#00a65a";//green
 					 borderColor = "#00a65a";//green
 				 }
@@ -35,10 +34,10 @@
 				 });
 			   }
 		   }
-           console.log($scope.eventos);
+           //console.log($scope.eventos);
            calendar($scope.eventos);
        }, function(response) {
-         alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
+           alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
            $scope.mensaje = {
              msg:"No se envió información, comuniquese con el proveedor",
              tipo:"alert-warning"

@@ -98,7 +98,7 @@ class Admin extends MY_Controller {
 		$paramts['contenido'] = 'admin/wizard';
 		$paramts['mensaje'] = $mensaje;
 		$paramts['desc_titulo'] = 'Asignar plan a cliente';
-		$paramts['javascript'] = $this->load->view('admin/js/wizardjs','', TRUE);
+		$paramts['javascript'] = $this->load->view('admin/js/wizardjs','', TRUE) . $this->load->view('admin/js/agendajs','', TRUE);
 		$this->load->view('layout/master',$paramts);
 	}
 
@@ -107,10 +107,43 @@ class Admin extends MY_Controller {
 
 		$this->db->trans_start();
 		$this->db->trans_begin();
+		
+		if($prog['clasesPorsemana'] == "1") {
+			$clxsm = $prog['descripcion']['clasesxsemana'];
+			$class = $prog['descripcion']['clases'];
+			$it = $class / $clxsm;
+			//Primera lidea de VALUES que se guardara en base de datos
+			$stringValues = "(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fecha']."','".$prog['hora']."',0)";
+			//Iteracion para sumar 7 dias para la siguiente cita
+			$fecha = $prog['fecha'];
+			for ($i = 0; $i < $it - 1; $i++) {
+				$fecha = date_create($fecha);
+				date_add($fecha, date_interval_create_from_date_string('7 days'));
+				$fecha = date_format($fecha, 'Y-m-d');
+				$stringValues .= ", (".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$fecha."','".$prog['hora']."',0)";
+			}
+			$this->db->query("INSERT INTO citas (id_cliente, nombre_cliente, id_plan, nombre_plan, fecha, hora, aplazada) VALUES ". $stringValues);
+		} elseif ($prog['clasesPorsemana'] == "2"){
+			$clxsm = $prog['descripcion']['clasesxsemana'];
+			$class = $prog['descripcion']['clases'];
+			$it = $class / $clxsm;
 
-		$this->db->query("INSERT INTO citas (id_cliente, nombre_cliente, id_plan, nombre_plan, fecha, hora, aplazada) ".
-			"VALUES(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fecha']."','".$prog['hora']."',0)"
-		);
+			$stringValues = "(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fechaCita1']."','".$prog['horaCita1']."',0) ".
+				            ",(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fechaCita2']."','".$prog['horaCita2']."',0) ";
+			$fecha1 = $prog['fechaCita1'];
+			$fecha2 = $prog['fechaCita2'];
+			for ($i = 0; $i < $it - 1; $i++) {
+				$fecha1 = date_create($fecha1);
+				$fecha2 = date_create($fecha2);
+				date_add($fecha1, date_interval_create_from_date_string('7 days'));
+				date_add($fecha2, date_interval_create_from_date_string('7 days'));
+				$fecha1 = date_format($fecha1, 'Y-m-d');
+				$fecha2 = date_format($fecha2, 'Y-m-d');
+				$stringValues .= ",(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$fecha1."','".$prog['horaCita1']."',0) ".
+				                 ",(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$fecha2."','".$prog['horaCita2']."',0) ";
+			}
+			$this->db->query("INSERT INTO citas (id_cliente, nombre_cliente, id_plan, nombre_plan, fecha, hora, aplazada) VALUES ".$stringValues);
+		}
 
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
@@ -121,6 +154,16 @@ class Admin extends MY_Controller {
 		}
 		//$this->load->view('layout/master',$paramts);
 	}
+
+	/*function buscarRangoDeHora($idcliente, $fecha, $hora){
+		$this->db->select("*");
+        $this->db->from('citas c');
+		$this->db->where('c.id_cliente', $idcliente);
+		$this->db->where('c.fecha', $fecha);
+		$this->db->where('c.hora', $fecha);
+		$query = $this->db->get();
+        $result = $query->result_array();
+	}*/
 
 	public function agenda($mensaje = null){
 		$paramts['CI'] = $this->CI;
@@ -171,9 +214,7 @@ class Admin extends MY_Controller {
 		$this->db->trans_start();
 		$this->db->trans_begin();
 
-		$this->db->query("UPDATE citas SET fecha = '".$cita['fecha']."', hora = '".$cita['hora']."' ".
-			"WHERE id = ".$cita['id']
-		);
+		$this->db->query("UPDATE citas SET fecha = '".$cita['fecha']."', hora = '".$cita['hora']."' WHERE id = ".$cita['id'].";");
 
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
@@ -182,7 +223,6 @@ class Admin extends MY_Controller {
 			$this->db->trans_commit();
 			echo json_encode(array('msg' =>  'Cita actualizada con éxito.', 'tipo'=>'callout-success'));
 		}
-		//$this->load->view('layout/master',$paramts);
 	}
 	
 	public function crear($mensaje = null){
