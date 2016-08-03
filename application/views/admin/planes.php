@@ -13,7 +13,7 @@
             <!-- form start -->
             <!--pre><?php print_r($plan);?> </pre-->
             <form method="POST" ng-submit="crearPlan()">
-              <div class="box-body" ng-init="idPlan = <?php echo $plan['id'];?>">
+              <div class="box-body" ng-init="idPlan = <?php echo isset($plan['id']) == null ? "" : $plan['id'] ;?>">
 				
                 <div class="form-group">
                   <label for="name">Nombre</label>
