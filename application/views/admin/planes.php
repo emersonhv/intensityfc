@@ -1,4 +1,4 @@
-<div class="row"  >
+<div class="row" ng-controller="VerPlanes">
 
    <div class="col-md-12">
 		<div class="alert {{datacli.tipo}}" ng-show="datacli.tipo">
@@ -12,7 +12,7 @@
             <!-- /.box-header -->
             <!-- form start -->
             <!--pre><?php print_r($plan);?> </pre-->
-            <form method="POST" ng-submit="crearPlan()" >
+            <form method="POST" ng-submit="crearPlan()">
               <div class="box-body" ng-init="idPlan = <?php echo $plan['id'];?>">
 				
                 <div class="form-group">
