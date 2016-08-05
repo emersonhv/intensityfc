@@ -12,7 +12,7 @@
            var cit = $scope.citas;
            $scope.eventos = [];
            var date = new Date();
-		   if (cit != "null") {  
+		   if (cit != "null") {
 			   for(i = 0; i < cit.length; i++){
 				 date.setFullYear(cit[i].fecha.split('-')[0]);
 				 date.setMonth(cit[i].fecha.split('-')[1]),
@@ -78,16 +78,16 @@
 
     function init_select(){
         //Initialize Select2 Elements
-        
-    }
-    
-</script>    
 
-<script type="text/javascript"> 
+    }
+
+</script>
+
+<script type="text/javascript">
     agenda.controller('ClienteController', ['$scope', '$http', '$window',function($scope, $http, $window) {
             $scope.cliente;
             $scope.clientes; // listado de clientes
-            
+
             var req = {
                 method: 'GET',
                 url: host + 'clientes',
@@ -105,15 +105,63 @@
                      placeholder: "Seleccione un cliente",
                      allowClear: true,
                      //Modal
-                     dropdownParent: $('#nueva_cita')
+                     //dropdownParent: $('#nueva_cita')
                 });
             }, function(response) {
                 alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
                 //$scope.data = response.data || "Request failed";
                 //$scope.status = response.status;
             });
-            
 
+            $scope.consultarCliente = function(){
+               var idCliente = $(".cliSel").attr("idCliente");
+               var req = {
+                   method: 'GET',
+                   url: host + 'citas_x_cliente/'+idCliente,
+                   headers:{
+                       'Content-Type': 'application/json'
+                   }
+               }
+
+               $http(req).
+               then(function(response) {
+                 $scope.citas = response.data.citas;
+                 $scope.cliente = response.data.cliente;
+                 var cit = $scope.citas;
+                 $scope.eventos = [];
+                 var date = new Date();
+          		   if (cit != "null") {
+          			   for(i = 0; i < cit.length; i++){
+          				 date.setFullYear(cit[i].fecha.split('-')[0]);
+          				 date.setMonth(cit[i].fecha.split('-')[1]),
+          				 date.setDate(cit[i].fecha.split('-')[2]);
+          				 var backgroundColor ="";
+          				 var borderColor = "";
+          				 if(cit[i].nombre_plan.indexOf("CLASE CORTESIA") > -1){
+          					 backgroundColor = "#3c8dbc";//azul
+          					 borderColor = "#3c8dbc";//azul
+          				 }else{
+          					 backgroundColor = "#00a65a";//green
+          					 borderColor = "#00a65a";//green
+          				 }
+          				 $scope.eventos.push({
+          				   title: cit[i].nombre_cliente,
+          				   start: cit[i].fecha + "T" +cit[i].hora,
+          				   url: host+'cita/'+cit[i].id,
+          				   backgroundColor: backgroundColor, //red
+          				   borderColor: borderColor //red
+          				 });
+          			   }
+          		   }
+                 console.log($scope.eventos);
+                 $('#calendar').fullCalendar('destroy');
+                 calendar($scope.eventos);/**/
+               }, function(response) {
+                   alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
+                   //$scope.data = response.data || "Request failed";
+                   //$scope.status = response.status;
+               });
+            };
     }]);
 
 </script>
