@@ -41,7 +41,7 @@ class Citas extends MY_Model {
             }
         }
     }
-	
+
 	/**
      *
      * @param type $id
@@ -54,8 +54,62 @@ class Citas extends MY_Model {
         $this->db->from('citas c');
         if ($id_cliente != false) {
             $this->db->where('c.id_cliente', $id_cliente);
-			//$this->db->group_by('nombre_plan'); 
+			//$this->db->group_by('nombre_plan');
 			$this->db->order_by('fecha', 'desc');
+            $query = $this->db->get();
+            $result = $query->result_array();
+            if ($query->num_rows() > 0) {
+                return $result;
+            } else {
+                return NULL;
+            }
+        } else {
+            $query = $this->db->get();
+            $result = $query->result_array();
+            if ($query->num_rows() > 0) {
+                return $result;
+            } else {
+                return NULL;
+            }
+        }
+    }
+
+    function get_citas_x_planes_x_cliente($id_cliente = false) {
+
+        $this->db->select("*");
+        $this->db->from('citas c');
+        if ($id_cliente != false) {
+            $this->db->where('c.id_cliente', $id_cliente);
+			      $this->db->group_by('nombre_plan');
+            $this->db->order_by('id', 'desc');
+            $this->db->order_by('fecha', 'desc');
+            $query = $this->db->get();
+            $result = $query->result_array();
+            if ($query->num_rows() > 0) {
+                return $result;
+            } else {
+                return NULL;
+            }
+        } else {
+            $query = $this->db->get();
+            $result = $query->result_array();
+            if ($query->num_rows() > 0) {
+                return $result;
+            } else {
+                return NULL;
+            }
+        }
+    }
+
+    function get_citas_x_planes($id_plan = false) {
+
+        $this->db->select("*");
+        $this->db->from('citas c');
+        if ($id_cliente != false) {
+            $this->db->where('c.id_plan', $id_plan);
+			      $this->db->group_by('nombre_plan');
+            $this->db->order_by('id', 'desc');
+            $this->db->order_by('fecha', 'desc');
             $query = $this->db->get();
             $result = $query->result_array();
             if ($query->num_rows() > 0) {
