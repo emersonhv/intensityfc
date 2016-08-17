@@ -6,10 +6,10 @@
         <ul class="sidebar-menu">
             <li class="">
                <a href="#">
-                   <i class="fa fa-user"></i> <b>Andrea Morales / ADMIN</b>
+                   <i class="fa fa-user"></i> <b>ADMIN</b>
                </a>
             </li>
-            <li class="header">MENÚ DE NAVEGACIÓN 2</li>
+            <li class="header">MENÚ DE NAVEGACIÓN</li>
             <li class="<?php echo $menu_activo == "Dashboard" ? "active" : ""; ?>">
                 <a href="#">
                      <i class="fa fa-dashboard"></i> <span>Dashboard</span>

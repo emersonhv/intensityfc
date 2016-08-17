@@ -23,6 +23,22 @@
         <div class="callout" ng-show="mensaje.msg" ng-class="mensaje.tipo">
             <p>{{mensaje.msg}}</p>
         </div>
+        <div class="callout" ng-show="mensaje.msgcitas" ng-class="mensaje.tipo2">
+             <h4>Corregir las citas de las siguientes fechas, presentan mas de dos citas en una misma media hora.</h4>
+             <ul>
+                  <li ng-repeat="cita in mensaje.msgcitas">
+                       <a href="{{host+'cita/'+cita.id}}" target="_blank">{{cita.fecha}}</a>
+                  </li>
+             </ul>
+        </div>
+        <div class="callout callout-info" ng-show="mensaje.informacion">
+             <h4>Complete los campos correctamente antes de guardar la información!</h4>
+             <ul>
+                  <li ng-repeat="info in mensaje.informacion">
+                       {{info}}
+                  </li>
+             </ul>
+        </div>
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="active">
@@ -172,10 +188,16 @@
         </div>
         <!-- /.tab-content -->
     </div>
+
 </div>
 <!-- FIN DE WIZARD -->
 
-
+<style type="text/css">
+.fc-popover{
+    width: 100% !important;
+    position: static;
+}
+</style>
 <div class="row" ng-controller="Agenda">
     <!-- /.col -->
     <div class="col-md-12 col-sm-12 col-xs-12">
