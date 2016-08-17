@@ -17,6 +17,7 @@
 			<?php } ?>
       <!-- /.timeline-label -->
 			<?php
+          date_default_timezone_set ("America/Bogota");
           $index=0;
           if($citas_x_plan != NULL) {
             foreach ($citas_x_plan as $item) {
@@ -28,7 +29,14 @@
           				<div class="timeline-item">
           					<h3 class="timeline-header">
                       <!--<button type="button" class="btn bg-green" data-toggle="collapse" data-target="#ver_cita<?php echo $index;?>">Ver Citas</button>-->
-                      <a  href="#" data-toggle="collapse" data-target="#ver_cita<?php echo $index;?>"><?php echo $item['plan']; ?></a><?php echo  " - ". $item['primera_cita'] ?>
+                      Plan: <a  href="#" data-toggle="collapse" data-target="#ver_cita<?php echo $index;?>"><?php echo $item['plan']. " - "; ?></a>
+                      Fecha inicial: <?php echo  " ". date('d-m-Y',strtotime($item['primera_cita'])); ?>
+                      <span class="pull-center-container">
+                        <small class="label pull-center bg-green">Completadas: <?php echo  " ". $item['citas_completadas']; ?></small>
+                        <small class="label pull-center bg-yellow">Pendientes: <?php echo  " ". $item['citas_pendientes'];  ?></small>
+                        <small class="label pull-center bg-blue">Total Citas: <?php echo  " ". $item['total_citas']; ?></small>
+                        <!--small class="label pull-center bg-red">Canceladas: <?php echo  " ". $item['citas_canceladas']; ?></small-->
+                      </span>
           					</h3>
                     <div class="timeline-body">
                         <div id="ver_cita<?php echo $index;?>" class="collapse">
@@ -36,6 +44,7 @@
                               <tr>
                                 <th>Fecha</th>
                                 <th>Hora</th>
+                                <th>Estado</th>
                                 <th>Ver cita</th>
                               </tr>
                         <?php
@@ -45,6 +54,7 @@
                             <tr>
                                 <td> <?php echo date("l d \of M \of Y", strtotime($cita['fecha']));?> </td>
                                 <td> <?php echo date("h:i A",strtotime($cita['hora'])); ?></td>
+                                <td> <small class="label pull-center <?php echo ($cita['estado'] == 1) ? "bg-green" : "bg-yellow"; ?>"><?php echo ($cita['estado'] == 1) ? "Completada" : "Pendiente"; ?></small></td>
                                 <td><a class="" href="../../cita/<?php echo $cita['id']; ?>"> Ver Cita </a></td>
                             </tr>
                         <?php

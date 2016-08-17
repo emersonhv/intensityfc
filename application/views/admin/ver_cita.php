@@ -10,6 +10,7 @@
          <span><b>PLAN:</b> <?php echo $cita['nombre_plan']; ?> </span><br>
          <span><b>FECHA:</b> <?php echo $cita['fecha']; ?> </span><br>
          <span><b>HORA:</b> <?php echo $cita['hora']; ?> </span><br>
+         <span><b>ESTADO ACTUAL:</b> <?php echo ($cita['estado'] == "0") ? "Pendiente" : "Completada"; ?> </span><br/><br/>
          <a href="" class="btn btn-danger" ng-click="cancelar_cita()"> Cancelar Cita </a>
          <a href="" class="btn btn-success" ng-click="completar_cita()"> Cita Asistida </a>
       </div>

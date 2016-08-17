@@ -222,7 +222,7 @@ class Admin extends MY_Controller {
 	}
 
 	public function ver_cita($id){
-		$citas = $this->citas->get_citas($id);
+		$citas = $this->citas->get_cita($id);
 		$paramts['CI'] = $this->CI;
 		$paramts['leftmenu'] = 'pagina/left_menu';
 		$paramts['menu_activo'] = 'Cita';
@@ -310,12 +310,25 @@ class Admin extends MY_Controller {
 		$cliente = $this->cliente->get_clientes($id);
 		$planes = $this->citas->get_citas_x_planes_x_cliente($id);
 		$citas = $this->citas->get_citas_order($id);
+
 		$paramts['cliente'] = $cliente;
 		$paramts['citas'] = $citas;
-		$i= 0;
+
 		if ($planes != NULL) {
 			foreach ($planes as $plan) {
 				$i=0;
+				//Retorna las citas para cada plan y cuenta teniendo en cuenta el estado citado
+				//Pendientes
+				$cant_pendientes = $this->citas->get_cantidad_citas_x_estado($id, $plan['id_plan'], 0,0,0,0);
+				//Completadas
+				$cant_completadas = $this->citas->get_cantidad_citas_x_estado($id, $plan['id_plan'], 1,0,0,0);
+				//Canceladas
+				$cant_aplazadas = $this->citas->get_cantidad_citas_x_estado($id, $plan['id_plan'], 0,1,0,0);
+				//Aplazadas
+				$cant_canceladas = $this->citas->get_cantidad_citas_x_estado($id, $plan['id_plan'], 0,0,1,0);
+				//Temp????
+				$cant_temp = $this->citas->get_cantidad_citas_x_estado($id, $plan['id_plan'], 0,0,0,1);
+
 				if ($citas != NULL) {
 					foreach ($citas as $cita) {
 							if ($plan['id_plan'] == $cita['id_plan']) {
@@ -326,7 +339,17 @@ class Admin extends MY_Controller {
 								$i++;
 							}
 					}
-					$citas_x_plan [] = array('plan' => $plan['nombre_plan'], 'primera_cita'=> $primera_cita, 'citas' => $citas_plan);
+
+					$citas_x_plan [] = array(
+																		'plan' => $plan['nombre_plan'],
+																		'primera_cita'=> $primera_cita,
+																		'total_citas' => count($citas_plan) ,
+																		'citas_pendientes'=> $cant_pendientes[0]['cantidad'],
+																		'citas_completadas'=> $cant_completadas[0]['cantidad'],
+																		'citas_aplazadas'=> $cant_aplazadas[0]['cantidad'],
+																		'citas_canceladas'=> $cant_canceladas[0]['cantidad'],
+																		'citas_temp'=> $cant_temp[0]['cantidad'],
+																		'citas' => $citas_plan);
 					unset($citas_plan);
 
 				}
