@@ -107,13 +107,20 @@
                      //Modal
                      //dropdownParent: $('#nueva_cita')
                 });
+
+                $('select').on('select2:select', function (evt) {
+                  // Do something
+                  var idCliente = $(this).attr("idCliente");
+                  console.log("=> "+idCliente);
+                  $scope.consultarCliente(idCliente);
+                });
             }, function(response) {
                 alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
                 //$scope.data = response.data || "Request failed";
                 //$scope.status = response.status;
             });
 
-            $scope.consultarCliente = function(){
+            $scope.consultarCliente = function(idCliente){
                var idCliente = $(".cliSel").attr("idCliente");
                var req = {
                    method: 'GET',

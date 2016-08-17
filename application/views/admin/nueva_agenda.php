@@ -4,8 +4,14 @@
             <div class="box-header with-border">
               <h4 style="text-align:center">Cliente</h4>
               <input type="text" class="form-control" ng-model="nombrecl" placeholder="Ingrese nombre de cliente">
+              <!--select class="form-control select2" multiple="multiple" data-placeholder="Ingrese nombre de cliente" style="width: 100%;">
+                  <option ng-repeat="cliente in clientes" value="{{cliente.id }}">
+                     {{cliente.name}}
+                  </option>
+              </select-->
             </div>
-            <div class="box-body" style="width:100%; height: 300px; overflow-y: scroll;">
+            <div class="box-body" style="width:100%; height: 200px; overflow-y: scroll;">
+
               <table class="table table-bordered">
                 <tbody>
                   <tr ng-repeat="cliente in clientes | filter:nombrecl">
