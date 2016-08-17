@@ -65,7 +65,6 @@ class Admin extends MY_Controller {
 		$insert = "INSERT INTO planes (name, reference, description, price, cantidad_citas, clasesxsemana) ";
 		$values = "VALUES ('".$prog['name']."','".$prog['reference']."','".$prog['description']."', '".$prog['price'] ."', '".$prog['cantidad_citas']."','".$prog['clasesxsemana']."')";
 
-		print_r($insert . ' '. $values);
 		$this->db->query($insert . ' '. $values);
 
 		if ($this->db->trans_status() === FALSE) {
@@ -77,6 +76,32 @@ class Admin extends MY_Controller {
 		}
 	}
 
+	public function actualizar_plan($mensaje = null){
+		$prog = json_decode(file_get_contents('php://input'), true);
+
+		$this->db->trans_start();
+		$this->db->trans_begin();
+
+		$update = "UPDATE planes SET ";
+		$update .= "name = ''".$prog['name']."'";
+		$update .= "reference = ''".$prog['reference']."'";
+		$update .= "description = ''".$prog['description']."'";
+		$update .= "price = ''".$prog['price']."'";
+		$update .= "cantidad_citas = ''".$prog['cantidad_citas']."'";
+		$update .= "clasesxsemana = ''".$prog['clasesxsemana']."'";
+
+		$this->db->query($update);
+
+		if ($this->db->trans_status() === FALSE) {
+			$this->db->trans_rollback();
+			echo json_encode(array('msg' =>  'No fue posible actualizar plan, intente nuevamente si persiste comuniquese con el proveedor.', 'tipo' => 'callout-danger'));
+		} else {
+			$this->db->trans_commit();
+			echo json_encode(array('msg' =>  'Plan creado con éxito.', 'tipo'=>'callout-success'));
+		}
+	}
+
+
 	public function get_plan($id){
 		$plan = $this->planes->get_planes($id);
 		$paramts['CI'] = $this->CI;
@@ -85,6 +110,7 @@ class Admin extends MY_Controller {
 		$paramts['titulo'] = 'Consultar Plan';
 		$paramts['contenido'] = 'admin/planes';
 		$paramts['plan'] = $plan;
+		$paramts['plan_json'] = json_encode($plan);
 		$paramts['desc_titulo'] = 'Vista general de planes';
 		$paramts['javascript'] = $this->load->view('admin/js/planesjs','', TRUE);
 		$this->load->view('layout/master',$paramts);
@@ -104,11 +130,13 @@ class Admin extends MY_Controller {
 
 	public function citas_aprogramadas(){
 		$prog = json_decode(file_get_contents('php://input'), true);
+
 		$msgcitas = "NULL";
 		$this->db->trans_start();
 		$this->db->trans_begin();
 		$id_insert = NULL;
 		if($prog['clasesPorsemana'] == "1") {
+
 			$clxsm = $prog['descripcion']['clasesxsemana'];
 			$class = $prog['descripcion']['clases'];
 			$it = $class / $clxsm;
@@ -307,6 +335,13 @@ class Admin extends MY_Controller {
 	{
 		$clientes = $this->cliente->get_clientes();
 		echo json_encode($clientes);
+	}
+
+	public function citas_x_cliente($id = null, $mensaje = null)
+	{
+		$citas = $this->citas->get_citas_order($id);
+		$cliente = $this->cliente->get_clientes($id);
+		echo json_encode(array("cliente" => $cliente, "citas"=> $citas));
 	}
 
 	public function citas_cliente($id = null, $mensaje = null)

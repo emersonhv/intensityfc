@@ -12,7 +12,7 @@
             <li class="header">MENÚ DE NAVEGACIÓN 2</li>
             <li class="<?php echo $menu_activo == "Dashboard" ? "active" : ""; ?>">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
 			<!--<li class="<?php echo $menu_activo == "Nuevo Cliente" ? "active" : ""; ?>">
@@ -43,6 +43,15 @@
                     <i class="fa fa-calendar"></i> <span>Agenda</span>
                 </a>
             </li>
+            <li class="treeview <?php echo $menu_activo == "Reportes" ? "active" : ""; ?>">
+               <a href="#">
+                   <i class="fa fa-calendar"></i> <span>Reportes</span>
+                   <i class="fa fa-angle-left pull-right"></i>
+               </a>
+                 <ul class="treeview-menu">
+                   <li><a href="nueva_agenda"><i class="fa fa-circle-o"></i> Consultar Citas por Cliente </a></li>
+                 </ul>
+           </li>
              <li class="<?php echo $menu_activo == "Nueva Agenda" ? "active" : ""; ?>">
                 <a href="nueva_agenda">
                     <i class="fa fa-calendar"></i> <span>Nueva Agenda</span>

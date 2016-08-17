@@ -47,6 +47,7 @@ $route["salir"] = "index/logout";
 //-----PLANES
 $route["nuevo_plan"] = "admin/nuevo_plan";
 $route["crear_plan"] = "admin/crear_plan";
+$route["actualizar_plan"] = "admin/actualizar_plan";
 $route["ver_planes"] = "admin/verplanes";
 $route["ver_plan/(:num)"] = "admin/get_plan/$1";
 $route["get_planes"] = "admin/listar_planes";
@@ -55,6 +56,7 @@ $route["insertar_citas"] = "admin/citas_aprogramadas";
 $route["ver_agenda"] = "admin/agenda";
 //Nueva Diseño para la agenda
 $route["nueva_agenda"] = "admin/nueva_agenda";
+$route["citas_x_cliente/(:num)"] = "admin/citas_x_cliente/$1";
 
 $route["obt_citas"] = "admin/get_citas";
 $route["cita/(:num)"] = "admin/ver_cita/$1";
