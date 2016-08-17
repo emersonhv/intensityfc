@@ -65,7 +65,7 @@ class Admin extends MY_Controller {
 		$insert = "INSERT INTO planes (name, reference, description, price, cantidad_citas, clasesxsemana) ";
 		$values = "VALUES ('".$prog['name']."','".$prog['reference']."','".$prog['description']."', '".$prog['price'] ."', '".$prog['cantidad_citas']."','".$prog['clasesxsemana']."')";
 
-		$this->db->query($insert . ' '. $values);
+		$this->db->query($insert .' '. $values);
 
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
@@ -307,10 +307,33 @@ class Admin extends MY_Controller {
 
 	public function citas_cliente($id = null, $mensaje = null)
 	{
-		$citas = $this->citas->get_citas_order($id);
 		$cliente = $this->cliente->get_clientes($id);
+		$planes = $this->citas->get_citas_x_planes_x_cliente($id);
+		$citas = $this->citas->get_citas_order($id);
 		$paramts['cliente'] = $cliente;
 		$paramts['citas'] = $citas;
+		$i= 0;
+		if ($planes != NULL) {
+			foreach ($planes as $plan) {
+				$i=0;
+				if ($citas != NULL) {
+					foreach ($citas as $cita) {
+							if ($plan['id_plan'] == $cita['id_plan']) {
+								$citas_plan[] =  $cita;
+								if ($i == 0) {
+									$primera_cita =  $cita['fecha'];
+								}
+								$i++;
+							}
+					}
+					$citas_x_plan [] = array('plan' => $plan['nombre_plan'], 'primera_cita'=> $primera_cita, 'citas' => $citas_plan);
+					unset($citas_plan);
+
+				}
+			}
+		}
+
+		$paramts['citas_x_plan'] = $citas_x_plan;
 		$paramts['CI'] = $this->CI;
 		$paramts['leftmenu'] = 'pagina/left_menu';
 		$paramts['menu_activo'] = '';

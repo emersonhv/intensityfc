@@ -7,41 +7,68 @@
             </div>
 		<?php } ?>
 		<ul class="timeline">
-            <!-- timeline time label -->
+       <!-- timeline time label -->
 			<?php if($cliente != NULL) { ?>
-			<li class="time-label"> 
-                  <span class="bg-green">
-				  <?php echo $cliente['name']; ?>
-                  </span>
-            </li>
+			<li class="time-label">
+          <span class="bg-green">
+  				  <?php echo $cliente['name']; ?>
+          </span>
+      </li>
 			<?php } ?>
-            <!-- /.timeline-label -->
-			<?php if($citas != NULL) { ?>
-			<?php foreach ($citas as $cita) { ?>
-            
+      <!-- /.timeline-label -->
+			<?php
+          $index=0;
+          if($citas_x_plan != NULL) {
+            foreach ($citas_x_plan as $item) {
+              $index++;
+                ?>
+                <li>
+
+          				<i class="fa fa-calendar-check-o bg-blue"></i>
+          				<div class="timeline-item">
+          					<h3 class="timeline-header">
+                      <!--<button type="button" class="btn bg-green" data-toggle="collapse" data-target="#ver_cita<?php echo $index;?>">Ver Citas</button>-->
+                      <a  href="#" data-toggle="collapse" data-target="#ver_cita<?php echo $index;?>"><?php echo $item['plan']; ?></a><?php echo  " - ". $item['primera_cita'] ?>
+          					</h3>
+                    <div class="timeline-body">
+                        <div id="ver_cita<?php echo $index;?>" class="collapse">
+                          <table class="table table-striped">
+                              <tr>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Ver cita</th>
+                              </tr>
+                        <?php
+                        foreach ($item['citas'] as $cita) {
+                          //if ($cita['estado'] == 0) {
+                        ?>
+                            <tr>
+                                <td> <?php echo date("l d \of M \of Y", strtotime($cita['fecha']));?> </td>
+                                <td> <?php echo date("h:i A",strtotime($cita['hora'])); ?></td>
+                                <td><a class="" href="../../cita/<?php echo $cita['id']; ?>"> Ver Cita </a></td>
+                            </tr>
+                        <?php
+                          //}
+                        }
+                        ?>
+                        </table>
+                        </div>
+                    </div>
+                  </div>
+                </li>
+                <?php
+
+            }
+          }
+
+      ?>
+
             <!-- timeline item -->
-            <li>
-				<i class="fa <?php echo $cita['estado'] == '0' ? 'fa-calendar-check-o bg-blue' : 'fa-calendar-times-o bg-red'; ?>"></i>
-				<div class="timeline-item">
-					<h3 class="timeline-header">
-						<a href="#"><?php echo $cita['nombre_plan']; ?></a>
-						<?php echo "Fecha: ". $cita['fecha']."  "; ?>
-						<?php echo "Hora: ".$cita['hora']; ?>
-					</h3>
-					<?php if($cita['estado'] == '0'){ ?>
-					<div class="timeline-footer">
-						<!--a class="btn btn-primary btn-xs">Aplazar</a-->
-						<a class="btn btn-danger btn-xs" href="/cita/<?php echo $cita['id']; ?>/cliente/<?php echo $cita['id_cliente']; ?>" >Terminar cita</a>
-					</div>
-					<?php } ?>
-				</div>
-            </li>
-			<?php } ?>
-			<?php } ?>
+
             <!-- END timeline item -->
-            <li>
-              <i class="fa fa-clock-o bg-gray"></i>
-            </li>
+          <li>
+            <i class="fa fa-clock-o bg-gray"></i>
+          </li>
         </ul>
 	</div>
 </div>
