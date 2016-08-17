@@ -59,7 +59,7 @@ class Admin extends MY_Controller {
 
 	public function crear_plan($mensaje = null){
 		$prog = json_decode(file_get_contents('php://input'), true);
-		
+
 		$this->db->trans_start();
 		$this->db->trans_begin();
 		$insert = "INSERT INTO planes (name, reference, description, price, cantidad_citas, clasesxsemana) ";
@@ -67,7 +67,7 @@ class Admin extends MY_Controller {
 
 		print_r($insert . ' '. $values);
 		$this->db->query($insert . ' '. $values);
-		
+
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
 			echo json_encode(array('msg' =>  'No fue posible crear plan, intente nuevamente si persiste comuniquese con el proveedor.', 'tipo' => 'callout-danger'));
@@ -104,25 +104,35 @@ class Admin extends MY_Controller {
 
 	public function citas_aprogramadas(){
 		$prog = json_decode(file_get_contents('php://input'), true);
-
+		$msgcitas = "NULL";
 		$this->db->trans_start();
 		$this->db->trans_begin();
-		
+		$id_insert = NULL;
 		if($prog['clasesPorsemana'] == "1") {
 			$clxsm = $prog['descripcion']['clasesxsemana'];
 			$class = $prog['descripcion']['clases'];
 			$it = $class / $clxsm;
-			//Primera lidea de VALUES que se guardara en base de datos
-			$stringValues = "(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fecha']."','".$prog['hora']."',0)";
-			//Iteracion para sumar 7 dias para la siguiente cita
+
+			$stringValues = "(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",";
+			$stringValues .= "'".$prog['idPlan']['name']."','".$prog['fecha']."','".$prog['hora']."',0)";
+
+			if($this->rangoDeFechaHora($prog['fecha'],$prog['hora']) >= 2){
+				$msgcitas = $prog['fecha'];
+			}
+
 			$fecha = $prog['fecha'];
 			for ($i = 0; $i < $it - 1; $i++) {
 				$fecha = date_create($fecha);
 				date_add($fecha, date_interval_create_from_date_string('7 days'));
 				$fecha = date_format($fecha, 'Y-m-d');
+				if($this->rangoDeFechaHora($fecha,$prog['hora']) >= 2){
+					//date("j F",strtotime($fecha,'Y-m-d'))
+					$msgcitas .= ",". $fecha;
+				}
 				$stringValues .= ", (".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$fecha."','".$prog['hora']."',0)";
 			}
 			$this->db->query("INSERT INTO citas (id_cliente, nombre_cliente, id_plan, nombre_plan, fecha, hora, aplazada) VALUES ". $stringValues);
+
 		} elseif ($prog['clasesPorsemana'] == "2"){
 			$clxsm = $prog['descripcion']['clasesxsemana'];
 			$class = $prog['descripcion']['clases'];
@@ -130,6 +140,14 @@ class Admin extends MY_Controller {
 
 			$stringValues = "(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fechaCita1']."','".$prog['horaCita1']."',0) ".
 				            ",(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$prog['fechaCita2']."','".$prog['horaCita2']."',0) ";
+
+			if($this->rangoDeFechaHora($prog['fechaCita1'],$prog['horaCita1']) >= 2){
+				$msgcitas = $prog['fechaCita1'];
+			}
+			if($this->rangoDeFechaHora($prog['fechaCita2'],$prog['horaCita2']) >= 2){
+				$msgcitas .= ",".$prog['fechaCita2'];
+			}
+
 			$fecha1 = $prog['fechaCita1'];
 			$fecha2 = $prog['fechaCita2'];
 			for ($i = 0; $i < $it - 1; $i++) {
@@ -139,6 +157,14 @@ class Admin extends MY_Controller {
 				date_add($fecha2, date_interval_create_from_date_string('7 days'));
 				$fecha1 = date_format($fecha1, 'Y-m-d');
 				$fecha2 = date_format($fecha2, 'Y-m-d');
+
+				if($this->rangoDeFechaHora($fecha1,$prog['horaCita1']) >= 2){
+					$msgcitas .= ",".$fecha1;
+				}
+				if($this->rangoDeFechaHora($fecha2,$prog['horaCita2']) >= 2){
+					$msgcitas .= ",".$fecha2;
+				}
+
 				$stringValues .= ",(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$fecha1."','".$prog['horaCita1']."',0) ".
 				                 ",(".$prog['idClie']['id'].",'".$prog['idClie']['name']."',".$prog['idPlan']['id'].",'".$prog['idPlan']['name']."','".$fecha2."','".$prog['horaCita2']."',0) ";
 			}
@@ -150,20 +176,31 @@ class Admin extends MY_Controller {
 			echo json_encode(array('msg' =>  'No fue posible crear cita, intente nuevamente si persiste comuniquese con el proveedor.', 'tipo' => 'callout-danger'));
 		} else {
 			$this->db->trans_commit();
-			echo json_encode(array('msg' =>  'Cita creada con éxito.', 'tipo'=>'callout-success'));
+			if($msgcitas != "NULL") {
+				$fecha_citas = explode(',', $msgcitas);
+				$array_citas =  array();
+				foreach ($fecha_citas as $fecha) {
+					$cita = $this->buscar_cita($fecha, $prog['idClie']['id'], $prog['idPlan']['id']);
+					array_push($array_citas, array("id"=> $cita, "fecha"=> $fecha));
+				}
+				echo json_encode(array('msg' =>  'Cita creada con éxito.', 'tipo'=>'callout-success', 'msgcitas' => $array_citas, 'tipo2'=>'callout-warning'));
+			} else {
+				echo json_encode(array('msg' =>  'Cita creada con éxito.', 'tipo'=>'callout-success'));
+			}
 		}
-		//$this->load->view('layout/master',$paramts);
 	}
 
-	/*function buscarRangoDeHora($idcliente, $fecha, $hora){
-		$this->db->select("*");
-        $this->db->from('citas c');
-		$this->db->where('c.id_cliente', $idcliente);
-		$this->db->where('c.fecha', $fecha);
-		$this->db->where('c.hora', $fecha);
-		$query = $this->db->get();
-        $result = $query->result_array();
-	}*/
+	function rangoDeFechaHora($fecha, $hora){
+		$this->load->database();
+		$query = $this->db->query("SELECT * FROM `citas` WHERE fecha = '$fecha' and hora = '$hora'");
+		return $query->num_rows();
+	}
+
+	function buscar_cita($fecha, $cliente, $plan){
+		$query = $this->db->query("SELECT id FROM `citas` WHERE fecha = '".$fecha."' and id_plan = ".$plan." and id_cliente = ".$cliente." ");
+		$row = $query->row_array();
+		return $row['id'];
+	}
 
 	public function agenda($mensaje = null){
 		$paramts['CI'] = $this->CI;
@@ -224,7 +261,7 @@ class Admin extends MY_Controller {
 			echo json_encode(array('msg' =>  'Cita actualizada con éxito.', 'tipo'=>'callout-success'));
 		}
 	}
-	
+
 	public function crear($mensaje = null){
 		$paramts['CI'] = $this->CI;
 		$paramts['leftmenu'] = 'pagina/left_menu';
@@ -236,10 +273,10 @@ class Admin extends MY_Controller {
 		$paramts['javascript'] = $this->load->view('admin/js/clientesjs','', TRUE);
 		$this->load->view('layout/master',$paramts);
     }
-	
+
 	public function crear_cliente(){
 		$cliente = json_decode(file_get_contents('php://input'), true);
-		
+
 		$this->db->trans_start();
 		$this->db->trans_begin();
 		$insert = "INSERT INTO clientes (name,identification,phonePrimary,phoneSecondary,fax,mobile,observations,email,address,type)";
@@ -254,7 +291,7 @@ class Admin extends MY_Controller {
 			'".(isset($cliente['email'])?$cliente['email']:null)."',
 			'".(isset($cliente['direccion'])?$cliente['direccion']:null)."',
 			'client')";
-		
+
 		$this->db->query($insert.''.$values);
 
 		if ($this->db->trans_status() === FALSE) {
@@ -265,13 +302,13 @@ class Admin extends MY_Controller {
 			echo json_encode(array('msg' =>  'Cliente guardado con éxito.', 'tipo'=>'alert-success'));
 		}
 	}
-	
+
 	public function listar_clientes($mensaje=null)
 	{
 		$clientes = $this->cliente->get_clientes();
 		echo json_encode($clientes);
 	}
-	
+
 	public function citas_cliente($id = null, $mensaje = null)
 	{
 		$citas = $this->citas->get_citas_order($id);
@@ -284,12 +321,12 @@ class Admin extends MY_Controller {
 		$paramts['mensaje'] = $mensaje;
 		$paramts['titulo'] = 'Citas de cliente';
 		$paramts['contenido'] = 'admin/citas_por_cliente';
-		$paramts['desc_titulo'] = 'Linea de tiempo de citas del cliente y sus planes'; 
+		$paramts['desc_titulo'] = 'Linea de tiempo de citas del cliente y sus planes';
 		$paramts['javascript'] = $this->load->view('admin/js/citasClientesjs','', TRUE);
 		$this->load->view('layout/master',$paramts);
 	}
-	
-	public function terminarcita($idCita, $idCliente){	
+
+	public function terminarcita($idCita, $idCliente){
 
 		$this->db->trans_start();
 		$this->db->trans_begin();
@@ -297,7 +334,7 @@ class Admin extends MY_Controller {
 		$this->db->query("UPDATE citas SET estado = '1' ".
 			"WHERE id = ".$idCita
 		);
-		
+
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
 			$this->citas_cliente($idCliente, array('msg' =>  'No se pudo terminar la cita.', 'tipo'=>'callout-danger'));
@@ -306,7 +343,7 @@ class Admin extends MY_Controller {
 			$this->citas_cliente($idCliente, array('msg' =>  'Cita terminada con éxito.', 'tipo'=>'callout-success'));
 		}
 	}
-	
+
 	///Estado Cita 0 => Es Cancelado
 	public function cancelar_cita(){
 		$cita = json_decode(file_get_contents('php://input'), true);
@@ -317,21 +354,21 @@ class Admin extends MY_Controller {
 		$this->db->query("UPDATE citas SET estado= '0', cancelada = '1'".
 			"WHERE id = ".$cita['id']
 		);
-		
-		$this->db->query("INSERT INTO citas_canceladas (id_cita) 
+
+		$this->db->query("INSERT INTO citas_canceladas (id_cita)
 		VALUES (".$cita['id'] .");"
 		);
-		
+
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
 			echo json_encode(array('msg' =>  'No fue posible Cancelar cita, intente nuevamente si persiste comuniquese con el proveedor.', 'tipo' => 'callout-danger'));
-			
+
 		} else {
 			$this->db->trans_commit();
 			echo json_encode(array('msg' =>  'Cita Cancelada con éxito.', 'tipo'=>'callout-success'));
-			
+
 		}
-		
+
 		//$this->load->view('layout/master',$paramts);
 	}
 
@@ -345,11 +382,11 @@ class Admin extends MY_Controller {
 		$this->db->query("UPDATE citas SET estado= '0', completada = '1' ".
 			"WHERE id = ".$cita['id']
 		);
-		
-		$this->db->query("INSERT INTO  citas_completas (id_cita) 
+
+		$this->db->query("INSERT INTO  citas_completas (id_cita)
 		VALUES (".$cita['id'] .");"
 		);
-		
+
 		if ($this->db->trans_status() === FALSE) {
 			$this->db->trans_rollback();
 			echo json_encode(array('msg' =>  'No fue posible Cancelar cita, intente nuevamente si persiste comuniquese con el proveedor.', 'tipo' => 'callout-danger'));
@@ -359,7 +396,7 @@ class Admin extends MY_Controller {
 		}
 		//$this->load->view('layout/master',$paramts);
 	}
-	
+
 	public function gestion_clientes($mensaje = null){
 		$paramts['CI'] = $this->CI;
 		$paramts['leftmenu'] = 'pagina/left_menu';
@@ -370,7 +407,7 @@ class Admin extends MY_Controller {
 		$paramts['javascript'] = $this->load->view('admin/js/cliente_listajs','', TRUE);
 		$this->load->view('layout/master',$paramts);
 	}
-	
+
 	public function get_cliente($id)
 	{
 		$cliente = $this->cliente->get_clientes($id);

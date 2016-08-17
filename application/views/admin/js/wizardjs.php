@@ -69,6 +69,7 @@
         };
 
         $scope.enviar_tarea_programada = function() {
+            $scope.mensaje = undefined;
             if ($scope.validarFormulario()) {
 
                 if ($scope.planDescripcion.clasesxsemana == '1') {
@@ -105,6 +106,7 @@
                 $http(request).then(function(response) {
                     //$window.location.href = 'ver_agenda';
                     $scope.mensaje = response.data;
+
                 }, function(response) {
                     $scope.mensaje = {
                         msg: "hubo un error al enviar información, comuniquese con el proveedor",
@@ -112,7 +114,12 @@
                     }
                 });
             } else {
-                alert("Complete los campos correctamente antes de guardar la información!");
+                $scope.mensaje = {
+                     informacion:["Las fechas deben tener formato YYYY-mm-dd",
+                                   "Las horas deben tener formato HH:mm:ss",
+                                   "La fecha de primera cita debe ser menor a la fecha de la segunda cita"]
+               };
+                alert("Complete los campos correctamente antes de guardar la información! Las fechas llevan formato YYYY-mm-dd y las horas HH:mm:ss");
             }
         };
 
@@ -150,20 +157,63 @@
         };
 
         $scope.validarFormulario = function() {
-            var validacion = false;
+            var validacion = true;
             if ($scope.planDescripcion.clasesxsemana == '2') {
-                if (FECHA_REGEXP.test($scope.fecha_c1) && FECHA_REGEXP.test($scope.fecha_c2) && HORA_REGEXP.test($scope.hora_c1) && HORA_REGEXP.test($scope.hora_c2)) {
-                    validacion = true;
+                if (!FECHA_REGEXP.test($scope.fecha_c1) || !FECHA_REGEXP.test($scope.fecha_c2) || !HORA_REGEXP.test($scope.hora_c1) || !HORA_REGEXP.test($scope.hora_c2)) {
+                    validacion = false;
+                    return validacion;
+                }
+                if(!$scope.validarFechaMenorActual($scope.fecha_c1)){
+                    validacion = false;
+                    return validacion;
+                }
+                if(!$scope.validarFechaMenorActual($scope.fecha_c2)){
+                    validacion = false;
+                    return validacion;
+                }
+                if(!$scope.validarFecha1menorFecha2($scope.fecha_c1,$scope.fecha_c2)){
+                     validacion = false;
+                     return validacion;
                 }
             } else if ($scope.planDescripcion.clasesxsemana == '1') {
-                if (FECHA_REGEXP.test($scope.fecha) && HORA_REGEXP.test($scope.hora)) {
-                    validacion = true;
-
+                if (!FECHA_REGEXP.test($scope.fecha) || !HORA_REGEXP.test($scope.hora)) {
+                    validacion = false;
+                    return validacion;
+                }
+                if(!$scope.validarFechaMenorActual($scope.fecha)){
+                    validacion = false;
+                    return validacion;
                 }
             }
 
             return validacion;
         };
+
+          $scope.validarFecha1menorFecha2 = function (fecha1, fecha2){
+               var f1=new Date();
+               var fecha = fecha1.split("-");
+               f1.setFullYear(fecha[0],fecha[1]-1,fecha[2]);
+               var f2=new Date();
+               var fecha = fecha2.split("-");
+               f2.setFullYear(fecha[0],fecha[1]-1,fecha[2]);
+
+               if (f1 < f2)
+                    return true;
+               else
+                    return false;
+          }
+
+          $scope.validarFechaMenorActual = function (date){
+               var x=new Date();
+               var fecha = date.split("-");
+               x.setFullYear(fecha[0],fecha[1]-1,fecha[2]);
+               var today = new Date();
+
+               if (x >= today)
+                    return false;
+               else
+                    return true;
+          }
 
         $scope.reloadAgenda = function() {
             var request = {

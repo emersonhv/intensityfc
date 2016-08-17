@@ -1,8 +1,9 @@
 <style type="text/css">
 .fc-popover{
-    overflow: scroll !important;
-    height: 150px !important;
-    width: 226px !important;
+    width: 100% !important;
+    position: absolute;
+    top: 24px !important;
+    left: 3px !important;
 }
 </style>
 <div class="row" ng-controller="Agenda">
