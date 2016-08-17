@@ -1,11 +1,17 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <script type="text/javascript">
+     $(".datepicker").datepicker({
+        dateFormat: 'yy-mm-dd',
+        minDate: new Date
+     });
     agenda.controller('Cita', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location) {
 
         $scope.cliente;
 
         $scope.plan;
 
-        
+
 
         $scope.editar_cita = function() {
 

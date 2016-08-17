@@ -119,7 +119,7 @@
                                    "Las horas deben tener formato HH:mm:ss",
                                    "La fecha de primera cita debe ser menor a la fecha de la segunda cita"]
                };
-                alert("Complete los campos correctamente antes de guardar la información! Las fechas llevan formato YYYY-mm-dd y las horas HH:mm:ss");
+               // alert("Complete los campos correctamente antes de guardar la información! Las fechas llevan formato YYYY-mm-dd y las horas HH:mm:ss");
             }
         };
 
@@ -190,14 +190,7 @@
         };
 
           $scope.validarFecha1menorFecha2 = function (fecha1, fecha2){
-               var f1=new Date();
-               var fecha = fecha1.split("-");
-               f1.setFullYear(fecha[0],fecha[1]-1,fecha[2]);
-               var f2=new Date();
-               var fecha = fecha2.split("-");
-               f2.setFullYear(fecha[0],fecha[1]-1,fecha[2]);
-
-               if (f1 < f2)
+               if (fecha1 < fecha2)
                     return true;
                else
                     return false;
@@ -205,14 +198,14 @@
 
           $scope.validarFechaMenorActual = function (date){
                var x=new Date();
-               var fecha = date.split("-");
-               x.setFullYear(fecha[0],fecha[1]-1,fecha[2]);
-               var today = new Date();
-
-               if (x >= today)
-                    return false;
-               else
+               var y = x.getFullYear();
+               var m = x.getMonth()+1;
+               var d = x.getDate();
+               var xdate = y+"-"+(m < 10 ? "0"+m : m)+"-"+(d < 10 ? "0"+d : d);
+               if (xdate <= date)
                     return true;
+               else
+                    return false;
           }
 
         $scope.reloadAgenda = function() {

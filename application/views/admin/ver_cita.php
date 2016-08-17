@@ -20,7 +20,7 @@
              <div class="form-group">
                 <label>Nueva fecha:</label>
                 <div class="input-group">
-                  <input type="date" class="form-control dateepicker" ng-model="fecha" placeholder="yyyy-mm-dd - Ingrese fecha deseada">
+                  <input type="text" class="datepicker form-control dateepicker" ng-model="fecha" placeholder="yyyy-mm-dd - Ingrese fecha deseada">
                   <div class="input-group-addon">
                      <i class="fa fa-calendar"></i>
                   </div>
