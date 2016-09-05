@@ -8,7 +8,6 @@
       $http(request).
        then(function(response) {
            $scope.citas = response.data;
-           console.log(response.status);
            var cit = $scope.citas;
            $scope.eventos = [];
            var date = new Date();
@@ -35,7 +34,7 @@
 				 });
 			   }
 		   }
-           console.log($scope.eventos);
+
            calendar($scope.eventos);
        }, function(response) {
          alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
@@ -46,6 +45,8 @@
            //$scope.data = response.data || "Request failed";
            //$scope.status = response.status;
        });
+
+
     }]);
 </script>
 
@@ -101,27 +102,21 @@
                 $scope.status = response.status;
                 $scope.data = response.data;
                 $scope.clientes = _.sortBy($scope.data, 'reference');
-               $(".select2").select2({
-                     placeholder: "Seleccione un cliente",
-                     allowClear: true,
-                     //Modal
-                     //dropdownParent: $('#nueva_cita')
-                });
 
-                $('select').on('select2:select', function (evt) {
-                  // Do something
-                  var idCliente = $(this).attr("idCliente");
-                  console.log("=> "+idCliente);
-                  $scope.consultarCliente(idCliente);
-                });
             }, function(response) {
                 alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
                 //$scope.data = response.data || "Request failed";
                 //$scope.status = response.status;
             });
 
-            $scope.consultarCliente = function(idCliente){
-               var idCliente = $(".cliSel").attr("idCliente");
+            /*$scope.citasClienteKeyPress= function($event){
+
+            }*/
+
+            $scope.consultarCliente = function(element){
+
+               var idCliente = element.id;
+               console.log(idCliente);
                var req = {
                    method: 'GET',
                    url: host + 'citas_x_cliente/'+idCliente,
@@ -136,8 +131,9 @@
                  $scope.cliente = response.data.cliente;
                  var cit = $scope.citas;
                  $scope.eventos = [];
+
                  var date = new Date();
-          		   if (cit != "null") {
+          		   if (cit != null) {
           			   for(i = 0; i < cit.length; i++){
           				 date.setFullYear(cit[i].fecha.split('-')[0]);
           				 date.setMonth(cit[i].fecha.split('-')[1]),
@@ -160,9 +156,9 @@
           				 });
           			   }
           		   }
-                 console.log($scope.eventos);
+
                  $('#calendar').fullCalendar('destroy');
-                 calendar($scope.eventos);/**/
+                 calendar($scope.eventos);
                }, function(response) {
                    alert("Hubo un problema al traer los datos del servidor, recargue la página si persiste contacte con el administrador del sistema.");
                    //$scope.data = response.data || "Request failed";

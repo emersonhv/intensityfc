@@ -45,7 +45,7 @@
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
               </div-->
           </div>
-            
+
           <table class="table table-bordered table-hover">
               <tbody>
               <tr>
@@ -56,7 +56,6 @@
                   <th>Valor</th>
                   <th>Cantidad citas</th>
                   <th>Citas por Semana</th>
-                  <th>Color</th>
               </tr>
               <tr ng-repeat="plan in planes | filter:nombrecl">
                   <td>
@@ -69,7 +68,6 @@
                   <td>{{plan.price | currency}} COP</td>
                   <td>{{plan.cantidad_citas}}</td>
                   <td>{{plan.clasesxsemana }}</td>
-                  <td class="{{color[$index]}}"> </td>
               </tr>
               </tbody>
           </table>

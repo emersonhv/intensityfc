@@ -49,8 +49,10 @@ $route["nuevo_plan"] = "admin/nuevo_plan";
 $route["crear_plan"] = "admin/crear_plan";
 $route["actualizar_plan"] = "admin/actualizar_plan";
 $route["ver_planes"] = "admin/verplanes";
-$route["ver_plan/(:num)"] = "admin/get_plan/$1";
+$route["ver_plan/(:num)"] = "admin/ver_plan/$1";
+$route["get_plan/(:num)"] = "admin/get_plan/$1";
 $route["get_planes"] = "admin/listar_planes";
+//-----AGENDA
 $route["asignar_plan"] = "admin/wizard";
 $route["insertar_citas"] = "admin/citas_aprogramadas";
 $route["ver_agenda"] = "admin/agenda";
@@ -58,16 +60,23 @@ $route["ver_agenda"] = "admin/agenda";
 $route["nueva_agenda"] = "admin/nueva_agenda";
 $route["citas_x_cliente/(:num)"] = "admin/citas_x_cliente/$1";
 
+$route["listado_citas"] = "admin/listado_citas";
+$route["lista_citas"] = "admin/lista_citas_x_paginas";
+$route["control_citas"] = "admin/gestion_citas";
+
 $route["obt_citas"] = "admin/get_citas";
 $route["cita/(:num)"] = "admin/ver_cita/$1";
 $route["editar_cita"] = "admin/editar_cita";
 $route["cancelar_cita"] = "admin/cancelar_cita";
 $route["completar_cita"] = "admin/completar_cita";
 //-----CLIENTE
-$route["cliente"] = "admin/crear";
+$route["cliente"] = "admin/nuevo_cliente";
 $route["crear_cliente"] = "admin/crear_cliente";
+$route["actualizar_cliente"] = "admin/actualizar_cliente";
+$route["cliente/(:num)"] = "admin/ver_cliente/$1";
+$route["get_cliente/(:num)"] = "admin/get_cliente/$1";
 $route["clientes"] = "admin/listar_clientes";
-$route["citas/cliente/(:num)"] = "admin/citas_cliente/$1";
+$route["citas/cliente/(:num)"] = "admin/paquetes_x_cliente/$1";
 $route["cita/(:num)/cliente/(:num)"] = "admin/terminarcita/$1/$2";
 $route["gestion_clientes"] = "admin/gestion_clientes";
 //-----USUARIOS

@@ -64,14 +64,12 @@ class Citas extends MY_Model {
      * @return Array
 	 * traer citas por planes, clientes y organizado por fechas y planes
      */
-    function get_citas_order($id_cliente = false) {
-
+    function get_citas_order($id_cliente = false, $columna="id", $tipo_order="desc") {
         $this->db->select("*");
         $this->db->from('citas c');
         if ($id_cliente != false) {
             $this->db->where('c.id_cliente', $id_cliente);
-			//$this->db->group_by('nombre_plan');
-			$this->db->order_by('fecha', 'desc');
+			      $this->db->order_by($columna, $tipo_order);
             $query = $this->db->get();
             $result = $query->result_array();
             if ($query->num_rows() > 0) {
@@ -87,6 +85,28 @@ class Citas extends MY_Model {
             } else {
                 return NULL;
             }
+        }
+    }
+
+    function get_citas_ordenadas($id_cliente = false, $id_plan=false, $columna="id") {
+
+        $this->db->select("*");
+        $this->db->from('citas c');
+        if ($id_cliente != false) {
+            $this->db->where('c.id_cliente', $id_cliente);
+        }
+        if ($id_plan != false) {
+            $this->db->where('c.id_plan', $id_plan);
+        }
+
+	      $this->db->order_by($columna, 'asc');
+        $this->db->order_by('fecha', 'asc');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        if ($query->num_rows() > 0) {
+            return $result;
+        } else {
+            return NULL;
         }
     }
 
@@ -117,7 +137,7 @@ class Citas extends MY_Model {
         }
     }
 
-    function get_cantidad_citas_x_estado($id_cliente, $id_plan = false, $estado=0, $cancelada=0, $aplazada=0, $temp=0){
+    function get_cantidad_citas_x_estado($id_cliente=false, $id_plan = false, $estado=0, $cancelada=0, $aplazada=0, $temp=0){
       $this->db->select("count(*) as cantidad");
       $this->db->from('citas c');
       if ($id_cliente != false) {
@@ -176,4 +196,48 @@ class Citas extends MY_Model {
             return FALSE;
         }
     }
+
+    function get_citas_agrupadas_x_cliente($id_cliente=false) {
+
+        $this->db->select("c.id_cliente, c.nombre_cliente, c.id_plan, c.nombre_plan");
+        $this->db->from('citas c');
+        $this->db->join('planes p', 'p.id = c.id_plan');
+        if ($id_cliente != false) {
+            $this->db->where('c.id_cliente', $id_cliente);
+			      //$this->db->group_by('c.id_cliente, c.nombre_cliente,c.id_plan, c.nombre_plan');
+            $this->db->order_by('c.id_cliente', 'desc');
+            $query = $this->db->get();
+            $result = $query->result_array();
+            if ($query->num_rows() > 0) {
+                return $result;
+            } else {
+                return NULL;
+            }
+        } else {
+            $this->db->group_by('id_cliente, nombre_cliente,id_plan, nombre_plan');
+            $this->db->order_by('id_cliente', 'desc');
+            $query = $this->db->get();
+            $result = $query->result_array();
+            if ($query->num_rows() > 0) {
+                return $result;
+            } else {
+                return NULL;
+            }
+        }
+    }
+
+    function  get_citas_paginadas($limite=10, $offset=0){
+      $this->db->select("*");
+      $this->db->from('citas c');
+      $this->db->limit($limite, $offset);
+      $query = $this->db->get();
+      $result = $query->result_array();
+      if ($query->num_rows() > 0) {
+          return $result;
+      } else {
+          return NULL;
+      }
+
+    }
+
 }

@@ -33,6 +33,11 @@
                     <span>Planes</span>
                 </a>
             </li>
+            <li class="<?php echo $menu_activo == "Control Citas" ? "active" : ""; ?>">
+                <a href="control_citas">
+                    <i class="fa fa-arrow-down"></i> <span>Control Citas</span>
+                </a>
+            </li>
             <li class="<?php echo $menu_activo == "Asignar" ? "active" : ""; ?>">
                 <a href="asignar_plan">
                     <i class="fa fa-arrow-down"></i> <span>Asignar</span>
@@ -43,19 +48,14 @@
                     <i class="fa fa-calendar"></i> <span>Agenda</span>
                 </a>
             </li>
-            <li class="treeview <?php echo $menu_activo == "Reportes" ? "active" : ""; ?>">
-               <a href="#">
-                   <i class="fa fa-calendar"></i> <span>Reportes</span>
-                   <i class="fa fa-angle-left pull-right"></i>
-               </a>
-                 <ul class="treeview-menu">
-                   <li><a href="nueva_agenda"><i class="fa fa-circle-o"></i> Consultar Citas por Cliente </a></li>
-                 </ul>
-           </li>
-             <li class="<?php echo $menu_activo == "Nueva Agenda" ? "active" : ""; ?>">
-                <a href="nueva_agenda">
-                    <i class="fa fa-calendar"></i> <span>Nueva Agenda</span>
+
+             <li class="<?php echo $menu_activo == "Historial de Citas" ? "active" : ""; ?>">
+                <a href="#">
+                    <i class="fa fa-calendar"></i> <span>Historial de Citas</span>
                 </a>
+                <ul class="treeview-menu">
+                  <li><a href="nueva_agenda"><i class="fa fa-circle-o"></i> Consultar Citas por Cliente </a></li>
+                </ul>
             </li>
             <li>
                <a href="#">

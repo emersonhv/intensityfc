@@ -8,7 +8,6 @@
     agenda.controller('Cita', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location) {
 
         $scope.cliente;
-
         $scope.plan;
 
 

@@ -16,7 +16,7 @@
                 <tbody>
                   <tr ng-repeat="cliente in clientes | filter:nombrecl">
                     <td>
-                      <a class="btn cliSel" idCliente="{{cliente.id}}" ng-click="consultarCliente();">
+                      <a class="btn cliSel" id="{{cliente.id}}" ng-click="consultarCliente(cliente);">
                         <i class="fa fa-search"></i> - <span> {{cliente.name}}</span> </a>
                     </td>
                    </tr>

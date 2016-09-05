@@ -5,6 +5,11 @@
     top: 24px !important;
     left: 3px !important;
 }
+.icon{
+    position: absolute;
+    right: 0;
+}
+
 </style>
 <div class="row" ng-controller="Agenda">
     <!-- /.col -->

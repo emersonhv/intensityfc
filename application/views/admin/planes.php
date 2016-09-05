@@ -1,22 +1,36 @@
-<div class="row" ng-controller="VerPlanes">
+<?php
+    $controller ="";
+  
+    if($accion == "Guardar" ) {
+      $ng_controller = "ng-controller='GestionPlan'";
+      $ng_submit = "ng-submit='crearPlan()'";
+    }
+
+    if ($accion == "Actualizar" ) {
+      $ng_controller = "ng-controller='GestionPlan'";
+      $ng_submit = "ng-submit='actualizarPlan()'";
+    }
+?>
+<div class="row" <?php echo $ng_controller ?> >
 
    <div class="col-md-12">
-		<div class="alert {{datacli.tipo}}" ng-show="datacli.tipo">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-			{{datacli.msg}}
-		</div>
+     <div class="alert {{datacli.tipo}}" ng-show="datacli.tipo">
+ 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+ 			{{datacli.msg}}
+ 		</div>
 		<div class="box box-danger">
             <div class="box-header with-border">
               <h3 class="box-title"></h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            
-            <form method="POST" ng-submit="crearPlan()">
-              <div class="box-body" ng-init="idPlan = <?php echo (isset($plan['id']) == null ? "" : $plan['id']); ?>">
+
+            <form method="POST" <?php echo $ng_submit; ?> >
+              <div class="box-body" >
+                <input type="hidden" ng-model="plan.id" id="id" value="<?php echo (isset($plan['id']) == null ? "" : $plan['id']); ?>" />
                 <div class="form-group">
                   <label for="name">Nombre</label>
-                  <input type="text"  class="form-control" ng-model="plan.name"  id="name" name="name" value="<?php echo (isset($plan['name']) == null ? "" : $plan['name']); ?>" required/>
+                  <input type="text"  class="form-control" ng-model="plan.name" id="name" name="name" value="<?php echo (isset($plan['name']) == null ? "" : $plan['name']); ?>" required/>
                 </div>
                 <div class="form-group">
                   <label for="referencia">Referencia</label>
@@ -44,7 +58,7 @@
 
               <div class="box-footer">
                 <button type="submit" class="btn btn-block btn-primary">Guardar</button>
-				<button type="button" class="btn btn-block btn-warning" ng-click="limpiarForm()">Limpiar formulario</button>
+				        <button type="button" class="btn btn-block btn-warning" ng-click="limpiarForm()">Limpiar formulario</button>
               </div>
             </form>
           </div>
