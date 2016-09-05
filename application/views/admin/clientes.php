@@ -10,6 +10,7 @@
       $ng_submit = "ng-submit='actualizarCliente()'";
     }
 ?>
+
 <div class="row" <?php echo $ng_controller; ?>>
 
    <div class="col-md-12">
