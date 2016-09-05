@@ -157,7 +157,7 @@ agenda.controller('ActualizarCliente', ['$scope', '$http', function ($scope, $ht
          then(function (response) {
              $scope.status = response.status;
              $scope.data = response.data;
-             console.log("--------------------------------------------------------------------------");
+             console.log("-------------------------------------------------------------------------");
              console.log($scope.status);
              console.log($scope.data);
 
